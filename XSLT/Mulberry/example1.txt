@@ -1,0 +1,63 @@
+2009/2/7 Myles Pflum <myles_pflum@filemaker.com>:
+> > First time poster in need of assistance =)
+> >
+> > Using XSLT 1.0, given the following structure:
+> >
+> > <document>
+> >        <aaa />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa stylename='start' />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa stylename='finish' />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa stylename='start' />
+> >        <aaa />
+> >        <aaa />
+> >        <aaa stylename='finish' />
+> >        <aaa />
+> >        <aaa />
+> > </document>
+> >
+> > How can I make the <aaa /> elements that exist in between @='start' and
+> > @='finish become children of <aaa stylename='start' />?
+
+I'm afraid it's bit of a challenge with xslt 1.0:
+
+<xsl:template match="node()">
+  <xsl:copy>
+    <xsl:apply-templates select="@*|node()[1]"/>
+  </xsl:copy>
+  <xsl:apply-templates select="following-sibling::node()[1]"/>
+</xsl:template>
+
+<xsl:template match="@*">
+  <xsl:copy/>
+</xsl:template>
+
+<xsl:template match="aaa[@stylename = 'start']">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+      <xsl:copy-of select="following-sibling::aaa[@stylename =
+'finish'][1]/preceding-sibling::node()
+      	[generate-id(preceding-sibling::aaa[@stylename = 'start'][1]) =
+generate-id(current())]"/>
+    </xsl:copy>
+  <xsl:apply-templates select="following-sibling::aaa[@stylename =
+'finish'][1]"/>
+</xsl:template>
+
+<xsl:template match="aaa[@stylename = 'finish']">
+  <xsl:apply-templates select="following-sibling::node()[1]"/>		
+</xsl:template>
+
+
+-------------------------------------------------------------------------------

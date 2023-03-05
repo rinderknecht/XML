@@ -1,0 +1,83 @@
+#!/usr/bin/cduce --script
+
+type Value=String|Slot
+type Freq=(Int, Value)
+type Slot=<(Atom) ..>[Freq*]
+type Term=<psi nm=String>[Slot*]
+
+include "dtd.cd"
+
+let combine(elems: [(String|<(Atom)..>_)*], freqs: [Freq*]): [Freq*] =
+  let combineStr ((String, [Freq*]) -> [Freq*])
+    (str, []) -> [(1,str)]
+  | (str, [(f,v);tl]) -> 
+       if v = str 
+       then [(f+1,v);tl] 
+       else [(f,v);combineStr(str,tl)]
+  in
+  let combineElm (((String|<(Atom)..>_), [Freq*]) -> [Freq*])
+    (str&String, lst) -> combineStr(str, lst)
+  | (<(tag) (ats)>(str&String), []) -> 
+      [(1, <(tag) (ats)>(combineStr(str, [])))]
+  | (<(tag) (ats)>(elms&[<(Atom)..>_*]), []) -> 
+      [(1, <(tag) (ats)>(combine(elms, [])))]
+  | (<(tag) (ats)>(str&String), [(f, <(tag1) (ats1)>vals) tl::_*])
+      -> if (tag1 = tag) && (ats1 = ats)
+         then [(f+1, <(tag) (ats)>(combineStr(str, vals))) !tl]
+         else [(f, <(tag1) (ats1)>vals) !(combineElm(<(tag) (ats)>str, tl))]
+  | (<(tag) (ats)>(elms&[<(Atom)..>_*]), [(f, <(tag1) (ats1)>vals) tl::_*])
+      -> if (tag1 = tag) && (ats1 = ats)
+         then [(f+1, <(tag) (ats)>(combine(elms, vals))) !tl]
+         else [(f, <(tag1) (ats1)>vals) !(combineElm(<(tag) (ats)>elms, tl))]
+  | (prop, _) -> raise ("unhandled property: " @ string_of(prop))
+  in
+  match (elems, freqs) with
+  ([], freqs) -> freqs
+| ([elm;tl], freqs) -> 
+    combine(tl, combineElm(elm, freqs))
+in
+
+(* let lub(elems: [<(Atom)..>_*]): [Freq*] = combine(elems, []) in *)
+
+let abstract(dse: DSExport): <(Atom)..>_ =
+  let dse2 = xtransform [dse] with
+   <Property Name=nm&("NextID"|"SourceID"|"StageXPos"|"StageYPos"|"StageXSize"|"StageYSize"|"DisplaySize"|"TopTextPos"|"LeftTextPos"|"ContainerViewSizing"|"ZoomValue"|"NextStageID"|"Precision"|"BackgroundColor"|"Catalog"|"Signature")..>_ -> [<Property Name=nm>"<n>"]
+  | <Property Name=nm&("Name"|"UserName"|"TableName"|"Jobname"|"SourceColumn"|"PKeySourceColumn"|"Partner"|"SourceID"|"DSN"|"StageTypes"|"StageList"|"StageName"|"ColumnReference"|"SPName"|"TextFont"|"Parameters"|"Description"|"FullDescription"|"Password"|"Prompt"|"Category"|"Default"|"LogText"|"AnnotationText"|"Body"|"HelpTxt"|"JobSeqCodeGenOpts"|"Desc"|"ShortDesc"|"Value"|"DisplayValue"|"Column"|"ReferencedColumn"|"TestValues"|"Author"|"Copyright"|"DependentDLLs"|"RegDate"|"FunctionName")..>_ -> [<Property Name=nm>"<x>"]
+  | <Property Name=nm&("SqlPrimary"|"SqlRef"|"SqlInsert"|"SqlDelete"|"SqlUpdate"|"SqlWhere"|"SqlExtra")..>_ -> [<Property Name=nm>"<s>"]
+  | <Property Name=nm&("FileName"|"TableDef"|"Path"|"ReferencedTable")..>_ -> [<Property Name=nm>"<f>"]
+  | <Property Name=nm&("BeforeSubr"|"AfterSubr")..>_ -> [<Property Name=nm>"<c>"]
+  | <Property Name=nm&("JobControlCode")..>_ -> [<Property Name=nm>"..."]
+  | <Property Name=nm&("Derivation"|"ParsedDerivation"|"Expression"|"ParsedExpression"|"Constraint"|"ParsedConstraint"|"Transform"|"APTFieldProp"|"TriggerExpression"|"KeyExpression"|"PKeyParsedDerivation"|"Locator"|"APTRecordProp")..>_ -> [<Property Name=nm>"<e>"]
+  | <Property Name=nm&("InputPins"|"OutputPins"|"SourceColumns"|"TableNames"|"DelimitedLoopValues")..>_ -> [<Property Name=nm>"<l>"]
+  | <Property Name=nm&("ExtendedType")..>(str&String) -> 
+    let subNums (String -> String)
+      [hd::(Char\'0'--'9')* ('0'--'9')+ tl::_* ] -> [!hd '<n>' !(subNums tl)]
+    | str2 -> str2
+    in
+    [<Property Name=nm>(subNums str)]
+  in
+  let dse3 = xtransform dse2 with
+    <Collection Type=t Name=n>x -> [<Collection Type=t Name=n>"..."]
+  in
+  let dse4 = xtransform dse2 with
+    <Record Type=t ..>x -> [<Record Type=t>x]
+  in
+  match dse4 with [x] -> x
+in
+
+let filter(x: <(Atom)..>_): [<(Atom)..>_*] =
+ [x]/<Job ..>_/<Record ..>_
+in
+
+let lubFile(fname: Latin1, fs: [Freq*]): [Freq*] =
+  let dse:? DSExport = load_xml(fname) in
+  let elems = filter (abstract dse) in
+  combine(elems, fs)
+in
+
+let lubFiles (([Latin1*], [Freq*]) -> [Freq*])
+  ([], fs) -> fs
+| ([fname; tl], fs) -> lubFiles(tl, lubFile(fname, fs))
+in
+
+print(string_of(lubFiles(argv[], [])) @ "\n")

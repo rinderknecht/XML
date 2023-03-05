@@ -1,0 +1,593 @@
+[ (66,<Record
+        Type="JobDefn">[
+        (66,<Property Name="Name">[ [ 66 '<x>' ] ])
+        (66,<Property Name="NextID">[ [ 66 '<n>' ] ])
+        (66,<Property Name="Container">[ [ 66 'V0' ] ])
+        (66,<Property Name="JobVersion">[ [ 66 '50.0.0' ] ])
+        (66,<Property Name="ControlAfterSubr">[ [ 66 '0' ] ])
+        (64,<Collection
+              Name="Parameters"
+              Type="Parameters">[
+              (340,<SubRecord>[
+                     (340,<Property Name="Name">[ [ 340 '<x>' ] ])
+                     (340,<Property Name="Prompt">[ [ 340 '<x>' ] ])
+                     (336,<Property Name="Default">[ [ 336 '<x>' ] ])
+                     (340,<Property
+                            Name="ParamType">[
+                            [ 268 'String' ]
+                            [ 66 'Encrypted' ]
+                            [ 2 'Integer' ]
+                            [ 4 'Date' ]
+                            ])
+                     (279,<Property Name="ParamLength">[ [ 279 '0' ] ])
+                     (279,<Property Name="ParamScale">[ [ 279 '0' ] ])
+                     ])
+              ])
+        (66,<Collection
+              Name="MetaBag"
+              Type="MetaProperty">[
+              (66,<SubRecord>[
+                    (66,<Property Name="Owner">[ [ 66 'APT' ] ])
+                    (66,<Property Name="Name">[ [ 66 '<x>' ] ])
+                    (66,<Property Name="Value">[ [ 66 '<x>' ] ])
+                    ])
+              ])
+        (66,<Property Name="IsTemplate">[ [ 66 '0' ] ])
+        (66,<Property
+              PreFormatted="1"
+              Name="NLSLocale">[
+              [ 66
+                'Time=(Project default)\nNumeric=(Project default)\nCurrency=(Project default)\nCType=(Project default)\nCollate=(Project default)'
+                ]
+              ])
+        (66,<Property Name="JobType">[ [ 48 'Server' ] [ 18 'Sequence' ] ])
+        (66,<Property Name="Category">[ [ 66 '<x>' ] ])
+        (66,<Property Name="CenturyBreakYear">[ [ 66 '30' ] ])
+        (66,<Property Name="NextAliasID">[ [ 66 '2' ] ])
+        (66,<Property Name="ParameterFileDDName">[ [ 66 'DD00001' ] ])
+        (66,<Property Name="ReservedWordCheck">[ [ 66 'Yes' ] ])
+        (65,<Property Name="ValidationStatus">[ [ 65 '0' ] ])
+        (66,<Property Name="Uploadable">[ [ 66 '0' ] ])
+        (66,<Property Name="PgmCustomizationFlag">[ [ 66 '0' ] ])
+        (66,<Property Name="JobReportFlag">[ [ 66 '0' ] ])
+        (66,<Property Name="AllowMultipleInvocations">[ [ 66 '0' ] ])
+        (66,<Property Name="Act2ActOverideDefaults">[ [ 66 '0' ] ])
+        (66,<Property Name="Act2ActEnableRowBuffer">[ [ 66 '0' ] ])
+        (66,<Property Name="Act2ActUseIPC">[ [ 66 '0' ] ])
+        (66,<Property Name="EnableCacheSharing">[ [ 66 '0' ] ])
+        (66,<Property Name="RuntimeColumnPropagation">[ [ 66 '0' ] ])
+        (66,<Property Name="RelStagesInJobStatus">[ [ 66 '-1' ] ])
+        (66,<Property Name="WebServiceEnabled">[ [ 66 '0' ] ])
+        (66,<Property Name="CopyLibPrefix">[ [ 66 'ARDT' ] ])
+        (26,<Property Name="JobControlCode">[ [ 26 '...' ] ])
+        (2,<Property Name="FullDescription">[ [ 2 '<x>' ] ])
+        (5,<Property Name="BeforeSubr">[ [ 5 '<c>' ] ])
+        (15,<Property Name="JobSeqCodeGenOpts">[ [ 15 '<x>' ] ])
+        (4,<Property Name="Description">[ [ 4 '<x>' ] ])
+        (12,<Collection
+              Name="Dependencies"
+              Type="JobDepend">[
+              (65,<SubRecord>[
+                    (65,<Property Name="Name">[ [ 65 '<x>' ] ])
+                    (65,<Property Name="Type">[ [ 65 'Job' ] ])
+                    ])
+              ])
+        ])
+  (66,<Record
+        Type="ContainerView">[
+        (66,<Property Name="Name">[ [ 66 '<x>' ] ])
+        (66,<Property Name="NextID">[ [ 66 '<n>' ] ])
+        (66,<Property Name="IsTopLevel">[ [ 66 '0' ] ])
+        (66,<Property Name="StageList">[ [ 66 '<x>' ] ])
+        (66,<Property Name="StageXPos">[ [ 66 '<n>' ] ])
+        (66,<Property Name="StageYPos">[ [ 66 '<n>' ] ])
+        (66,<Property Name="StageTypes">[ [ 66 '<x>' ] ])
+        (66,<Property Name="NextStageID">[ [ 66 '<n>' ] ])
+        (66,<Property Name="SnapToGrid">[ [ 66 '1' ] ])
+        (66,<Property Name="GridLines">[ [ 66 '0' ] ])
+        (66,<Property Name="ZoomValue">[ [ 66 '<n>' ] ])
+        (66,<Property Name="StageXSize">[ [ 66 '<n>' ] ])
+        (66,<Property Name="StageYSize">[ [ 66 '<n>' ] ])
+        (66,<Property Name="ContainerViewSizing">[ [ 66 '<n>' ] ])
+        ])
+  (47,<Record
+        Type="ODBCStage">[
+        (47,<Property Name="Name">[ [ 47 '<x>' ] ])
+        (47,<Property Name="NextID">[ [ 47 '<n>' ] ])
+        (42,<Property Name="OutputPins">[ [ 42 '<l>' ] ])
+        (47,<Property Name="DSN">[ [ 47 '<x>' ] ])
+        (47,<Property Name="UserName">[ [ 47 '<x>' ] ])
+        (47,<Property Name="Password">[ [ 47 '<x>' ] ])
+        (47,<Property Name="UvFlag">[ [ 47 '0' ] ])
+        (47,<Property Name="Isolation">[ [ 47 'None' ] ])
+        (47,<Property Name="ArraySize">[ [ 47 '1' ] ])
+        (47,<Property Name="QuoteChar">[ [ 45 '\"' ] [ 2 '000' ] ])
+        (47,<Property Name="SepString">[ [ 47 '.' ] ])
+        (47,<Property Name="StageType">[ [ 47 'CODBCStage' ] ])
+        (5,<Property Name="InputPins">[ [ 5 '<l>' ] ])
+        ])
+  (78,<Record
+        Type="ODBCOutput">[
+        (78,<Property Name="Name">[ [ 78 '<x>' ] ])
+        (78,<Property Name="Partner">[ [ 78 '<x>' ] ])
+        (76,<Property Name="TableNames">[ [ 76 '<l>' ] ])
+        (21,<Property Name="SqlWhere">[ [ 21 '<s>' ] ])
+        (78,<Property Name="SqlPrimary">[ [ 78 '<s>' ] ])
+        (78,<Property Name="SqlRef">[ [ 78 '<s>' ] ])
+        (78,<Property Name="SqlUser">[ [ 78 '0' ] ])
+        (78,<Property Name="Isolation">[ [ 78 'None' ] ])
+        (78,<Collection
+              Name="Columns"
+              Type="OutputColumn">[
+              (860,<SubRecord>[
+                     (860,<Property Name="Name">[ [ 860 '<x>' ] ])
+                     (546,<Property Name="Description">[ [ 546 '<x>' ] ])
+                     (860,<Property
+                            Name="SqlType">[
+                            [ 24 'Decimal' ]
+                            [ 26 'Char' ]
+                            [ 8 'Numeric' ]
+                            [ 2 'Date' ]
+                            [ 479 'VarChar' ]
+                            [ 154 'Float' ]
+                            [ 66 'Timestamp' ]
+                            [ 99 'Integer' ]
+                            [ 2 'Real' ]
+                            ])
+                     (860,<Property Name="Precision">[ [ 860 '<n>' ] ])
+                     (788,<Property
+                            Name="Nullable">[
+                            [ 420 'No' ]
+                            [ 368 'Yes' ]
+                            ])
+                     (768,<Property
+                            Name="KeyPosition">[
+                            [ 5 'Yes' ]
+                            [ 763 'No' ]
+                            ])
+                     (860,<Property Name="DisplaySize">[ [ 860 '<n>' ] ])
+                     (517,<Property Name="Derivation">[ [ 517 '<e>' ] ])
+                     (438,<Property Name="Group">[ [ 438 'No' ] ])
+                     (544,<Property Name="ParsedDerivation">[ [ 544 '<e>' ] ])
+                     (544,<Property Name="SourceColumn">[ [ 544 '<x>' ] ])
+                     (577,<Property Name="TableDef">[ [ 577 '<f>' ] ])
+                     (537,<Property Name="AllowCRLF">[ [ 537 'No' ] ])
+                     (438,<Property Name="PadNulls">[ [ 438 'Error' ] ])
+                     (438,<Property Name="SortingOrder">[ [ 438 'Ascending' ] ])
+                     (860,<Property Name="PadChar">[ [ 860 ] ])
+                     (577,<Property Name="ColumnReference">[ [ 577 '<x>' ] ])
+                     (418,<Property Name="APTFieldProp">[ [ 418 '<e>' ] ])
+                     (567,<Property Name="TaggedSubrec">[ [ 567 '0' ] ])
+                     (567,<Property Name="OccursVarying">[ [ 567 '0' ] ])
+                     (860,<Property
+                            Name="ExtendedType">[
+                            [ 4 'Decimal(<n>) key' ]
+                            [ 20 'Decimal(<n>)' ]
+                            [ 1 'Char(<n>) key' ]
+                            [ 21 'Char(<n>)' ]
+                            [ 8 'Numeric(<n>)' ]
+                            [ 2 'Date(<n>)' ]
+                            [ 238 'VarChar(<n>)' ]
+                            [ 58 'Float(<n>) nullable' ]
+                            [ 96 'Float(<n>)' ]
+                            [ 241 'VarChar(<n>) nullable' ]
+                            [ 36 'Timestamp(<n>,<n>)' ]
+                            [ 66 'Integer(<n>)' ]
+                            [ 30 'Timestamp(<n>,<n>) nullable' ]
+                            [ 4 'Char(<n>) nullable' ]
+                            [ 33 'Integer(<n>) nullable' ]
+                            [ 2 'Real(<n>) nullable' ]
+                            ])
+                     (66,<Property Name="Scale">[ [ 66 '3' ] ])
+                     (4,<Property Name="PKeyIsCaseless">[ [ 4 '0' ] ])
+                     ])
+              ])
+        (78,<Property Name="LeftTextPos">[ [ 78 '<n>' ] ])
+        (78,<Property Name="TopTextPos">[ [ 78 '<n>' ] ])
+        (2,<Property Name="SPName">[ [ 2 '<x>' ] ])
+        (2,<Property Name="SPErrors">[ [ 2 ';' ] ])
+        (2,<Collection
+             Name="SPParams"
+             Type="OutputColumn">[
+             (2,<SubRecord>[
+                  (2,<Property Name="Name">[ [ 2 '<x>' ] ])
+                  (2,<Property Name="Description">[ [ 2 '<x>' ] ])
+                  (2,<Property Name="SqlType">[ [ 2 'VarChar' ] ])
+                  (2,<Property Name="Precision">[ [ 2 '<n>' ] ])
+                  (2,<Property Name="Nullable">[ [ 2 'Yes' ] ])
+                  (2,<Property Name="KeyPosition">[ [ 2 'No' ] ])
+                  (2,<Property Name="Group">[ [ 2 'No' ] ])
+                  (2,<Property Name="SPValue">[ [ 2 '#DATECHGT#' ] ])
+                  (2,<Property Name="AllowCRLF">[ [ 2 'No' ] ])
+                  (2,<Property Name="PadNulls">[ [ 2 'Error' ] ])
+                  (2,<Property Name="SortingOrder">[ [ 2 'Ascending' ] ])
+                  (2,<Property Name="PadChar">[ [ 2 ] ])
+                  (2,<Property Name="TaggedSubrec">[ [ 2 '0' ] ])
+                  (2,<Property Name="OccursVarying">[ [ 2 '0' ] ])
+                  (2,<Property Name="SPParameterType">[ [ 2 'IN' ] ])
+                  (2,<Property
+                       Name="ExtendedType">[
+                       [ 2 'VarChar(<n>) nullable' ]
+                       ])
+                  ])
+             ])
+        ])
+  (5,<Record
+       Type="ODBCInput">[
+       (5,<Property Name="Name">[ [ 5 '<x>' ] ])
+       (5,<Property Name="Partner">[ [ 5 '<x>' ] ])
+       (5,<Property Name="TableName">[ [ 5 '<x>' ] ])
+       (5,<Property
+            Name="Action">[
+            [ 1 'Insert new or update existing rows' ]
+            [ 4 'Clear the table, then insert rows' ]
+            ])
+       (5,<Property Name="SqlInsert">[ [ 5 '<s>' ] ])
+       (5,<Property Name="SqlUpdate">[ [ 5 '<s>' ] ])
+       (5,<Property Name="SqlDelete">[ [ 5 '<s>' ] ])
+       (5,<Property Name="Isolation">[ [ 5 'None' ] ])
+       (5,<Property Name="TransactionSize">[ [ 5 '0' ] ])
+       (5,<Property Name="ArraySize">[ [ 5 '1' ] ])
+       (5,<Property Name="TXNBehaviour">[ [ 5 '40' ] ])
+       (5,<Property Name="EnableTxGroup">[ [ 5 '0' ] ])
+       ])
+  (181,<Record
+         Type="TransformerStage">[
+         (181,<Property Name="Name">[ [ 181 '<x>' ] ])
+         (181,<Property Name="NextID">[ [ 181 '<n>' ] ])
+         (181,<Property Name="InputPins">[ [ 181 '<l>' ] ])
+         (181,<Property Name="OutputPins">[ [ 181 '<l>' ] ])
+         (181,<Property Name="ValidationStatus">[ [ 181 '0' ] ])
+         (181,<Property Name="StageType">[ [ 181 'CTransformerStage' ] ])
+         ])
+  (181,<Record
+         Type="TrxInput">[
+         (181,<Property Name="Name">[ [ 181 '<x>' ] ])
+         (181,<Property Name="Partner">[ [ 181 '<x>' ] ])
+         (181,<Property Name="LinkType">[ [ 181 '1' ] ])
+         ])
+  (181,<Record
+         Type="TrxOutput">[
+         (181,<Property Name="Name">[ [ 181 '<x>' ] ])
+         (181,<Property Name="Partner">[ [ 181 '<x>' ] ])
+         (144,<Property Name="Reject">[ [ 144 'No' ] ])
+         (181,<Property Name="RowLimit">[ [ 181 '0' ] ])
+         (181,<Property Name="RoutineTransforms">[ [ 181 '\(1B)' ] ])
+         (181,<Collection
+                Name="Columns"
+                Type="OutputColumn">[
+                (1045,<SubRecord>[
+                        (1045,<Property Name="Name">[ [ 1045 '<x>' ] ])
+                        (136,<Property Name="Description">[ [ 136 '<x>' ] ])
+                        (1045,<Property
+                                Name="SqlType">[
+                                [ 45 'Numeric' ]
+                                [ 531 'VarChar' ]
+                                [ 8 'SmallInt' ]
+                                [ 185 'Integer' ]
+                                [ 41 'Timestamp' ]
+                                [ 87 'Char' ]
+                                [ 142 'Float' ]
+                                [ 2 'Decimal' ]
+                                [ 4 'Real' ]
+                                ])
+                        (1045,<Property Name="Precision">[ [ 1045 '<n>' ] ])
+                        (841,<Property
+                               Name="Nullable">[
+                               [ 544 'No' ]
+                               [ 297 'Yes' ]
+                               ])
+                        (781,<Property
+                               Name="KeyPosition">[
+                               [ 778 'No' ]
+                               [ 3 'Yes' ]
+                               ])
+                        (1034,<Property Name="DisplaySize">[ [ 1034 '<n>' ] ])
+                        (1045,<Property Name="Derivation">[ [ 1045 '<e>' ] ])
+                        (1045,<Property
+                                Name="ParsedDerivation">[
+                                [ 1045 '<e>' ]
+                                ])
+                        (925,<Property Name="SourceColumn">[ [ 925 '<x>' ] ])
+                        (349,<Property Name="TableDef">[ [ 349 '<f>' ] ])
+                        (1045,<Property Name="PadChar">[ [ 1045 ] ])
+                        (349,<Property Name="ColumnReference">[ [ 349 '<x>' ] ])
+                        (69,<Property Name="APTFieldProp">[ [ 69 '<e>' ] ])
+                        (295,<Property Name="TaggedSubrec">[ [ 295 '0' ] ])
+                        (295,<Property Name="OccursVarying">[ [ 295 '0' ] ])
+                        (1045,<Property
+                                Name="ExtendedType">[
+                                [ 4 'Numeric(<n>)' ]
+                                [ 354 'VarChar(<n>)' ]
+                                [ 3 'SmallInt(<n>)' ]
+                                [ 161 'Integer(<n>)' ]
+                                [ 1 'Integer(<n>) nullable key' ]
+                                [ 23 'Integer(<n>) nullable' ]
+                                [ 1 'VarChar(<n>) nullable key' ]
+                                [ 1 'Numeric(<n>) nullable key' ]
+                                [ 5 'SmallInt(<n>) nullable' ]
+                                [ 176 'VarChar(<n>) nullable' ]
+                                [ 3 'Timestamp(<n>,<n>) nullable' ]
+                                [ 9 'Timestamp(<n>,<n>)' ]
+                                [ 73 'Char(<n>)' ]
+                                [ 6 'Char(<n>) nullable' ]
+                                [ 29 'Float(<n>) nullable' ]
+                                [ 4 'Char(<n>,<n>)' ]
+                                [ 4 'Char(<n>,<n>) nullable' ]
+                                [ 111 'Float(<n>)' ]
+                                [ 2 'Decimal(<n>,<n>)' ]
+                                [ 17 'Timestamp(<n>)' ]
+                                [ 26 'Numeric(<n>,<n>) nullable' ]
+                                [ 12 'Timestamp(<n>) nullable' ]
+                                [ 2 'Float(<n>,<n>) nullable' ]
+                                [ 4 'Real(<n>,<n>) nullable' ]
+                                [ 4 'Numeric(<n>) nullable' ]
+                                [ 10 'Numeric(<n>,<n>)' ]
+                                ])
+                        (637,<Property Name="Group">[ [ 637 'No' ] ])
+                        (997,<Property Name="AllowCRLF">[ [ 997 'No' ] ])
+                        (637,<Property Name="PadNulls">[ [ 637 'Error' ] ])
+                        (637,<Property
+                               Name="SortingOrder">[
+                               [ 637 'Ascending' ]
+                               ])
+                        (64,<Property
+                              Name="Scale">[
+                              [ 20 '3' ]
+                              [ 6 '6' ]
+                              [ 32 '5' ]
+                              [ 6 '2' ]
+                              ])
+                        (109,<Property Name="Transform">[ [ 109 '<e>' ] ])
+                        (16,<Property Name="ArrayHandling">[ [ 16 '0' ] ])
+                        (16,<Property Name="PKeyIsCaseless">[ [ 16 '0' ] ])
+                        ])
+                ])
+         (181,<Property Name="LeftTextPos">[ [ 181 '<n>' ] ])
+         (181,<Property Name="TopTextPos">[ [ 181 '<n>' ] ])
+         ])
+  (18,<Record
+        Type="JSExecCmdActivity">[
+        (18,<Property Name="Name">[ [ 18 '<x>' ] ])
+        (18,<Property Name="NextID">[ [ 18 '<n>' ] ])
+        (7,<Property Name="OutputPins">[ [ 7 '<l>' ] ])
+        (18,<Property Name="Path">[ [ 18 '<f>' ] ])
+        (18,<Property Name="Parameters">[ [ 18 '<x>' ] ])
+        (18,<Property Name="CheckPoint">[ [ 18 '0' ] ])
+        (18,<Property Name="StageType">[ [ 18 'CExecCommandActivity' ] ])
+        (7,<Property Name="InputPins">[ [ 7 '<l>' ] ])
+        (7,<Property Name="FullDescription">[ [ 7 '<x>' ] ])
+        (7,<Property Name="LogText">[ [ 7 '<x>' ] ])
+        ])
+  (49,<Record
+        Type="JSActivityOutput">[
+        (49,<Property Name="Name">[ [ 49 '<x>' ] ])
+        (49,<Property Name="Partner">[ [ 49 '<x>' ] ])
+        (49,<Property Name="ConditionType">[ [ 49 '0' ] ])
+        (49,<Property Name="LeftTextPos">[ [ 49 '<n>' ] ])
+        (49,<Property Name="TopTextPos">[ [ 49 '<n>' ] ])
+        (49,<Property Name="SourceID">[ [ 49 '<n>' ] ])
+        ])
+  (49,<Record
+        Type="JSActivityInput">[
+        (49,<Property Name="Name">[ [ 49 '<x>' ] ])
+        (49,<Property Name="Partner">[ [ 49 '<x>' ] ])
+        (49,<Property Name="LinkType">[ [ 49 '1' ] ])
+        ])
+  (219,<Record
+         Type="SeqFileStage">[
+         (219,<Property Name="Name">[ [ 219 '<x>' ] ])
+         (219,<Property Name="NextID">[ [ 219 '<n>' ] ])
+         (218,<Property Name="InputPins">[ [ 218 '<l>' ] ])
+         (181,<Property Name="OutputPins">[ [ 181 '<l>' ] ])
+         (219,<Property Name="UnixFormat">[ [ 219 'DOS' ] ])
+         (219,<Property Name="PipeStage">[ [ 219 'File' ] ])
+         (219,<Property Name="UnicodeBOM">[ [ 219 '1' ] ])
+         (219,<Property Name="UnicodeSwapped">[ [ 219 '1' ] ])
+         (219,<Property Name="WithFilter">[ [ 219 '0' ] ])
+         (219,<Property Name="StageType">[ [ 219 'CSeqFileStage' ] ])
+         ])
+  (218,<Record
+         Type="SeqInput">[
+         (218,<Property Name="Name">[ [ 218 '<x>' ] ])
+         (218,<Property Name="Partner">[ [ 218 '<x>' ] ])
+         (218,<Property Name="FileName">[ [ 218 '<f>' ] ])
+         (218,<Property
+                Name="Delimiter">[
+                [ 146 ',' ]
+                [ 36 '000' ]
+                [ 36 '|' ]
+                ])
+         (218,<Property
+                Name="QuoteChar">[
+                [ 144 '\'' ]
+                [ 38 '000' ]
+                [ 36 '\"' ]
+                ])
+         (218,<Property Name="ColHeaders">[ [ 218 '0' ] ])
+         (218,<Property Name="OmitNewLine">[ [ 218 '0' ] ])
+         (218,<Property Name="Append">[ [ 218 '0' ] ])
+         (218,<Property Name="Backup">[ [ 218 '0' ] ])
+         (218,<Property Name="FixedWidth">[ [ 218 '0' ] ])
+         (218,<Property Name="ColSpace">[ [ 218 '0' ] ])
+         (218,<Property Name="EnforceMetaData">[ [ 218 '0' ] ])
+         (218,<Property Name="Writetime">[ [ 218 '0' ] ])
+         (218,<Property Name="WaitforReader">[ [ 218 '0' ] ])
+         (218,<Property Name="Flushrow">[ [ 218 '0' ] ])
+         (218,<Property Name="PadChar">[ [ 218 '#' ] ])
+         (3,<Property Name="NullString">[ [ 3 '\(15)' ] ])
+         ])
+  (181,<Record
+         Type="SeqOutput">[
+         (181,<Property Name="Name">[ [ 181 '<x>' ] ])
+         (181,<Property Name="Partner">[ [ 181 '<x>' ] ])
+         (181,<Property Name="FileName">[ [ 181 '<f>' ] ])
+         (181,<Property Name="ColDelim">[ [ 144 ',' ] [ 36 '000' ] [ 1 ';' ] ])
+         (181,<Property
+                Name="QuoteChar">[
+                [ 108 '\'' ]
+                [ 36 '000' ]
+                [ 37 '\"' ]
+                ])
+         (181,<Property Name="ColHeaders">[ [ 180 '0' ] [ 1 '1' ] ])
+         (181,<Property Name="FixedWidth">[ [ 181 '0' ] ])
+         (181,<Property Name="ColSpace">[ [ 181 '0' ] ])
+         (181,<Property Name="EnforceMetaData">[ [ 181 'Pad with SQL NULL' ] ])
+         (181,<Property Name="Readtimeout">[ [ 181 '0' ] ])
+         (181,<Collection
+                Name="Columns"
+                Type="OutputColumn">[
+                (341,<SubRecord>[
+                       (341,<Property Name="Name">[ [ 341 '<x>' ] ])
+                       (341,<Property
+                              Name="SqlType">[
+                              [ 188 'VarChar' ]
+                              [ 144 'Integer' ]
+                              [ 7 'Char' ]
+                              [ 2 'Timestamp' ]
+                              ])
+                       (341,<Property Name="Precision">[ [ 341 '<n>' ] ])
+                       (341,<Property Name="DisplaySize">[ [ 341 '<n>' ] ])
+                       (341,<Property Name="AllowCRLF">[ [ 341 'No' ] ])
+                       (341,<Property Name="PadChar">[ [ 341 ] ])
+                       (341,<Property
+                              Name="ExtendedType">[
+                              [ 188 'VarChar(<n>)' ]
+                              [ 144 'Integer(<n>)' ]
+                              [ 7 'Char(<n>)' ]
+                              [ 2 'Timestamp(<n>,<n>)' ]
+                              ])
+                       (197,<Property Name="Nullable">[ [ 197 'No' ] ])
+                       (195,<Property Name="KeyPosition">[ [ 195 'No' ] ])
+                       (195,<Property Name="Group">[ [ 195 'No' ] ])
+                       (195,<Property Name="PadNulls">[ [ 195 'Error' ] ])
+                       (195,<Property
+                              Name="SortingOrder">[
+                              [ 195 'Ascending' ]
+                              ])
+                       (8,<Property Name="Description">[ [ 8 '<x>' ] ])
+                       (8,<Property Name="TableDef">[ [ 8 '<f>' ] ])
+                       (8,<Property Name="ArrayHandling">[ [ 8 '0' ] ])
+                       (8,<Property Name="ColumnReference">[ [ 8 '<x>' ] ])
+                       (8,<Property Name="TaggedSubrec">[ [ 8 '0' ] ])
+                       (8,<Property Name="OccursVarying">[ [ 8 '0' ] ])
+                       (8,<Property Name="PKeyIsCaseless">[ [ 8 '0' ] ])
+                       (2,<Property Name="Scale">[ [ 2 '3' ] ])
+                       ])
+                ])
+         (181,<Property Name="Waitforwriter">[ [ 181 '0' ] ])
+         (181,<Property Name="PadChar">[ [ 180 '#' ] [ 1 ] ])
+         (181,<Property Name="LeftTextPos">[ [ 181 '<n>' ] ])
+         (181,<Property Name="TopTextPos">[ [ 181 '<n>' ] ])
+         (181,<Property Name="SuppressTruncWarn">[ [ 181 '0' ] ])
+         ])
+  (108,<Record
+         Type="CustomStage">[
+         (108,<Property Name="Name">[ [ 108 '<x>' ] ])
+         (108,<Property Name="NextID">[ [ 108 '<n>' ] ])
+         (108,<Property Name="InputPins">[ [ 108 '<l>' ] ])
+         (108,<Property Name="OutputPins">[ [ 108 '<l>' ] ])
+         (108,<Property
+                Name="StageType">[
+                [ 36 'AGGREGATOR' ]
+                [ 36 'CCollector' ]
+                [ 36 'sort' ]
+                ])
+         (108,<Collection
+                Name="Properties"
+                Type="CustomProperty">[
+                (576,<SubRecord>[
+                       (576,<Property Name="Name">[ [ 576 '<x>' ] ])
+                       (504,<Property Name="Value">[ [ 504 '<x>' ] ])
+                       ])
+                ])
+         ])
+  (180,<Record
+         Type="CustomInput">[
+         (180,<Property Name="Name">[ [ 180 '<x>' ] ])
+         (180,<Property Name="Partner">[ [ 180 '<x>' ] ])
+         (180,<Property Name="LinkType">[ [ 180 '1' ] ])
+         (180,<Property Name="ConditionNotMet">[ [ 180 'Fail' ] ])
+         (180,<Property Name="LookupFail">[ [ 180 'Fail' ] ])
+         (180,<Property Name="TXNBehaviour">[ [ 180 '0' ] ])
+         (180,<Property Name="EnableTxGroup">[ [ 180 '0' ] ])
+         ])
+  (144,<Record
+         Type="CustomOutput">[
+         (144,<Property Name="Name">[ [ 144 '<x>' ] ])
+         (144,<Property Name="Partner">[ [ 144 '<x>' ] ])
+         (144,<Collection
+                Name="Columns"
+                Type="OutputColumn">[
+                (216,<SubRecord>[
+                       (216,<Property Name="Name">[ [ 216 '<x>' ] ])
+                       (216,<Property
+                              Name="SqlType">[
+                              [ 144 'Integer' ]
+                              [ 72 'VarChar' ]
+                              ])
+                       (216,<Property Name="Precision">[ [ 216 '<n>' ] ])
+                       (144,<Property Name="Nullable">[ [ 144 'No' ] ])
+                       (144,<Property
+                              Name="KeyPosition">[
+                              [ 33 'Yes' ]
+                              [ 111 'No' ]
+                              ])
+                       (216,<Property Name="DisplaySize">[ [ 216 '<n>' ] ])
+                       (144,<Property Name="Group">[ [ 144 'No' ] ])
+                       (72,<Property Name="SourceColumn">[ [ 72 '<x>' ] ])
+                       (72,<Property Name="Transform">[ [ 72 '<e>' ] ])
+                       (216,<Property Name="AllowCRLF">[ [ 216 'No' ] ])
+                       (144,<Property Name="PadNulls">[ [ 144 'Error' ] ])
+                       (144,<Property
+                              Name="SortingOrder">[
+                              [ 144 'Ascending' ]
+                              ])
+                       (216,<Property Name="PadChar">[ [ 216 ] ])
+                       (36,<Property Name="PKeyIsCaseless">[ [ 36 '0' ] ])
+                       (216,<Property
+                              Name="ExtendedType">[
+                              [ 33 'Integer(<n>) key' ]
+                              [ 111 'Integer(<n>)' ]
+                              [ 72 'VarChar(<n>)' ]
+                              ])
+                       ])
+                ])
+         (144,<Property Name="LeftTextPos">[ [ 144 '<n>' ] ])
+         (144,<Property Name="TopTextPos">[ [ 144 '<n>' ] ])
+         ])
+  (12,<Record
+        Type="Annotation">[
+        (12,<Property Name="Name">[ [ 12 '<x>' ] ])
+        (12,<Property Name="AnnotationType">[ [ 4 '1' ] [ 8 '0' ] ])
+        (12,<Property Name="TextFont">[ [ 12 '<x>' ] ])
+        (12,<Property Name="TextHorizontalJustification">[ [ 12 '1' ] ])
+        (12,<Property Name="TextVerticalJustification">[ [ 12 '1' ] ])
+        (12,<Property Name="TextColor">[ [ 8 '0' ] [ 4 '4227327' ] ])
+        (12,<Property Name="BackgroundColor">[ [ 12 '<n>' ] ])
+        (12,<Property Name="BackgroundTransparent">[ [ 12 '0' ] ])
+        (12,<Property Name="BorderVisible">[ [ 12 '1' ] ])
+        (8,<Property Name="AnnotationText">[ [ 8 '<x>' ] ])
+        ])
+  (49,<Record
+        Type="JSJobActivity">[
+        (49,<Property Name="Name">[ [ 49 '<x>' ] ])
+        (49,<Property Name="NextID">[ [ 49 '<n>' ] ])
+        (42,<Property Name="OutputPins">[ [ 42 '<l>' ] ])
+        (49,<Property Name="ExecutionType">[ [ 47 '1' ] [ 2 '0' ] ])
+        (49,<Property Name="Jobname">[ [ 49 '<x>' ] ])
+        (48,<Collection
+              Name="ParameterValues"
+              Type="ParamValues">[
+              (153,<SubRecord>[
+                     (153,<Property Name="Name">[ [ 153 '<x>' ] ])
+                     (153,<Property Name="Description">[ [ 153 '<x>' ] ])
+                     (153,<Property Name="ValueType">[ [ 153 '4' ] ])
+                     (153,<Property Name="DisplayValue">[ [ 153 '<x>' ] ])
+                     ])
+              ])
+        (49,<Property Name="CheckPoint">[ [ 49 '0' ] ])
+        (49,<Property Name="StageType">[ [ 49 'CJobActivity' ] ])
+        (42,<Property Name="InputPins">[ [ 42 '<l>' ] ])
+        ])
+  ]

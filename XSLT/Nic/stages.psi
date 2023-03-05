@@ -1,0 +1,1259 @@
+[ (829,<Record
+         Type="JobDefn">[
+         (829,<Property Name="Name">[ [ 829 '<x>' ] ])
+         (829,<Property Name="NextID">[ [ 829 '<n>' ] ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Container">[
+                [ 252 'V0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="JobVersion">[
+                [ 251 '50.0.0' ]
+                [ 1 '50.1.1' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="ControlAfterSubr">[
+                [ 163 '1' ]
+                [ 89 '0' ]
+                ])
+         (817,<Collection Name="Parameters" Type="Parameters">[ [ 817 '...' ] ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="IsTemplate">[
+                [ 252 '0' ]
+                ])
+         (251,<Property
+                xml:space="preserve"
+                PreFormatted="1"
+                Name="NLSLocale">[
+                [ 251
+                  'Time=(Project default)\nNumeric=(Project default)\nCurrency=(Project default)\nCType=(Project default)\nCollate=(Project default)'
+                  ]
+                ])
+         (238,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="JobType">[
+                [ 238 'Server' ]
+                ])
+         (794,<Property Name="Category">[ [ 794 '<x>' ] ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="CenturyBreakYear">[
+                [ 252 '30' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="NextAliasID">[
+                [ 252 '2' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="ParameterFileDDName">[
+                [ 252 'DD00001' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="ReservedWordCheck">[
+                [ 252 'Yes' ]
+                ])
+         (251,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="ValidationStatus">[
+                [ 251 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Uploadable">[
+                [ 162 '1' ]
+                [ 90 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="PgmCustomizationFlag">[
+                [ 162 '1' ]
+                [ 90 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="JobReportFlag">[
+                [ 162 '1' ]
+                [ 90 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="AllowMultipleInvocations">[
+                [ 160 '1' ]
+                [ 92 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Act2ActOverideDefaults">[
+                [ 251 '0' ]
+                [ 1 '1' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Act2ActEnableRowBuffer">[
+                [ 252 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Act2ActUseIPC">[
+                [ 252 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="EnableCacheSharing">[
+                [ 251 '0' ]
+                [ 1 '1' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="RuntimeColumnPropagation">[
+                [ 252 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="RelStagesInJobStatus">[
+                [ 252 '-1' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="WebServiceEnabled">[
+                [ 252 '0' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="CopyLibPrefix">[
+                [ 252 'ARDT' ]
+                ])
+         (185,<Property Name="JobControlCode">[ [ 185 '...' ] ])
+         (446,<Property Name="Description">[ [ 446 '<x>' ] ])
+         (49,<Property Name="FullDescription">[ [ 49 '<x>' ] ])
+         (89,<Collection Name="Dependencies" Type="JobDepend">[ [ 89 '...' ] ])
+         (577,<Property Name="Container">[ [ 577 'V0' ] ])
+         (577,<Property Name="JobVersion">[ [ 575 '50.0.0' ] [ 2 '50.1.1' ] ])
+         (577,<Property Name="ControlAfterSubr">[ [ 402 '0' ] [ 175 '1' ] ])
+         (492,<Collection Name="MetaBag" Type="MetaProperty">[ [ 492 '...' ] ])
+         (577,<Property Name="IsTemplate">[ [ 577 '0' ] ])
+         (577,<Property
+                PreFormatted="1"
+                Name="NLSLocale">[
+                [ 577
+                  'Time=(Project default)\nNumeric=(Project default)\nCurrency=(Project default)\nCType=(Project default)\nCollate=(Project default)'
+                  ]
+                ])
+         (568,<Property Name="JobType">[ [ 437 'Server' ] [ 131 'Sequence' ] ])
+         (577,<Property Name="CenturyBreakYear">[ [ 577 '30' ] ])
+         (577,<Property Name="NextAliasID">[ [ 577 '2' ] ])
+         (577,<Property Name="ParameterFileDDName">[ [ 577 'DD00001' ] ])
+         (577,<Property Name="ReservedWordCheck">[ [ 577 'Yes' ] ])
+         (572,<Property Name="ValidationStatus">[ [ 572 '0' ] ])
+         (577,<Property Name="Uploadable">[ [ 471 '0' ] [ 106 '1' ] ])
+         (577,<Property Name="PgmCustomizationFlag">[ [ 471 '0' ] [ 106 '1' ] ])
+         (577,<Property Name="JobReportFlag">[ [ 471 '0' ] [ 106 '1' ] ])
+         (577,<Property
+                Name="AllowMultipleInvocations">[
+                [ 470 '0' ]
+                [ 107 '1' ]
+                ])
+         (577,<Property Name="Act2ActOverideDefaults">[ [ 577 '0' ] ])
+         (577,<Property Name="Act2ActEnableRowBuffer">[ [ 577 '0' ] ])
+         (577,<Property Name="Act2ActUseIPC">[ [ 577 '0' ] ])
+         (577,<Property Name="EnableCacheSharing">[ [ 577 '0' ] ])
+         (577,<Property Name="RuntimeColumnPropagation">[ [ 577 '0' ] ])
+         (577,<Property Name="RelStagesInJobStatus">[ [ 577 '-1' ] ])
+         (577,<Property Name="WebServiceEnabled">[ [ 577 '0' ] ])
+         (577,<Property Name="CopyLibPrefix">[ [ 577 'ARDT' ] ])
+         (19,<Property Name="DateFormat">[ [ 19 'CCYY-MM-DD' ] ])
+         (110,<Property Name="AfterSubr">[ [ 110 '<c>' ] ])
+         (64,<Property Name="BeforeSubr">[ [ 64 '<c>' ] ])
+         (70,<Property Name="JobSeqCodeGenOpts">[ [ 70 '<x>' ] ])
+         (128,<Property Name="TransactionSize">[ [ 128 '0' ] ])
+         (128,<Property Name="Act2ActBufferSize">[ [ 128 '0' ] ])
+         (128,<Property Name="Act2ActIPCTimeout">[ [ 128 '0' ] ])
+         (128,<Property Name="ExpressionSemanticCheckFlag">[ [ 128 '0' ] ])
+         (128,<Property Name="TraceOption">[ [ 128 '0' ] ])
+         (5,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="TransactionSize">[
+              [ 5 '0' ]
+              ])
+         (6,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="Act2ActBufferSize">[
+              [ 5 '0' ]
+              [ 1 '128' ]
+              ])
+         (6,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="Act2ActIPCTimeout">[
+              [ 5 '0' ]
+              [ 1 '10' ]
+              ])
+         (5,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="ExpressionSemanticCheckFlag">[
+              [ 5 '0' ]
+              ])
+         (5,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="TraceOption">[
+              [ 5 '0' ]
+              ])
+         (4,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="MFProcessMetaData">[
+              [ 4 '0' ]
+              ])
+         (126,<Property
+                Name="FromTemplate">[
+                [ 72 'OperationOLEDB' ]
+                [ 10 'IntegrationRiskFinance' ]
+                [ 42 'ReferentielOLEDB' ]
+                [ 2 'InterfaceAPBFERMAT' ]
+                ])
+         (126,<Property Name="MFProcessMetaData">[ [ 126 '0' ] ])
+         (31,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="DateFormat">[
+               [ 31 'CCYY-MM-DD' ]
+               ])
+         ])
+  (829,<Record
+         Type="ContainerView">[
+         (829,<Property Name="Name">[ [ 829 '<x>' ] ])
+         (829,<Property Name="NextID">[ [ 829 '<n>' ] ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="IsTopLevel">[
+                [ 162 '1' ]
+                [ 90 '0' ]
+                ])
+         (808,<Property Name="StageList">[ [ 808 '<x>' ] ])
+         (808,<Property Name="StageXPos">[ [ 808 '<n>' ] ])
+         (808,<Property Name="StageYPos">[ [ 808 '<n>' ] ])
+         (808,<Property Name="StageTypes">[ [ 808 '<x>' ] ])
+         (822,<Property Name="NextStageID">[ [ 822 '<n>' ] ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="SnapToGrid">[
+                [ 252 '1' ]
+                ])
+         (252,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="GridLines">[
+                [ 246 '0' ]
+                [ 5 '2' ]
+                [ 1 '1' ]
+                ])
+         (829,<Property Name="ZoomValue">[ [ 829 '<n>' ] ])
+         (808,<Property Name="StageXSize">[ [ 808 '<n>' ] ])
+         (808,<Property Name="StageYSize">[ [ 808 '<n>' ] ])
+         (829,<Property Name="ContainerViewSizing">[ [ 829 '<n>' ] ])
+         (577,<Property Name="IsTopLevel">[ [ 471 '0' ] [ 106 '1' ] ])
+         (577,<Property Name="SnapToGrid">[ [ 565 '1' ] [ 12 '2' ] ])
+         (577,<Property Name="GridLines">[ [ 569 '0' ] [ 8 '1' ] ])
+         ])
+  (1093,<Record
+          Type="ODBCStage">[
+          (1093,<Property Name="Name">[ [ 1093 '<x>' ] ])
+          (98,<Property Name="Description">[ [ 98 '<x>' ] ])
+          (1093,<Property Name="NextID">[ [ 1093 '<n>' ] ])
+          (674,<Property Name="OutputPins">[ [ 674 '<l>' ] ])
+          (1093,<Property Name="DSN">[ [ 1093 '<x>' ] ])
+          (1093,<Property Name="UserName">[ [ 1093 '<x>' ] ])
+          (1093,<Property Name="Password">[ [ 1093 '<x>' ] ])
+          (599,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="UvFlag">[
+                 [ 599 '0' ]
+                 ])
+          (599,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="Isolation">[
+                 [ 593 'None' ]
+                 [ 1 'Auto-commit' ]
+                 [ 5 'Read Uncommitted' ]
+                 ])
+          (277,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="TransactionSize">[
+                 [ 275 '0' ]
+                 [ 2 '100' ]
+                 ])
+          (599,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="ArraySize">[
+                 [ 599 '1' ]
+                 ])
+          (599,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="QuoteChar">[
+                 [ 248 '000' ]
+                 [ 351 '\"' ]
+                 ])
+          (277,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="AllowColumnMapping">[
+                 [ 277 '0' ]
+                 ])
+          (599,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="SepString">[
+                 [ 599 '.' ]
+                 ])
+          (599,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="StageType">[
+                 [ 599 'CODBCStage' ]
+                 ])
+          (427,<Property Name="InputPins">[ [ 427 '<l>' ] ])
+          (494,<Property Name="UvFlag">[ [ 494 '0' ] ])
+          (494,<Property Name="Isolation">[ [ 494 'None' ] ])
+          (494,<Property Name="ArraySize">[ [ 494 '1' ] ])
+          (494,<Property Name="QuoteChar">[ [ 24 '000' ] [ 470 '\"' ] ])
+          (494,<Property Name="SepString">[ [ 494 '.' ] ])
+          (494,<Property Name="StageType">[ [ 494 'CODBCStage' ] ])
+          (109,<Property Name="TransactionSize">[ [ 109 '0' ] ])
+          (109,<Property Name="AllowColumnMapping">[ [ 109 '0' ] ])
+          ])
+  (747,<Record
+         Type="ODBCOutput">[
+         (747,<Property Name="Name">[ [ 747 '<x>' ] ])
+         (17,<Property Name="Description">[ [ 17 '<x>' ] ])
+         (747,<Property Name="Partner">[ [ 747 '<x>' ] ])
+         (727,<Property Name="TableNames">[ [ 727 '<l>' ] ])
+         (747,<Property Name="SqlPrimary">[ [ 747 '<s>' ] ])
+         (725,<Property Name="SqlRef">[ [ 725 '<s>' ] ])
+         (409,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="SqlUser">[
+                [ 361 '0' ]
+                [ 48 '1' ]
+                ])
+         (409,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Isolation">[
+                [ 398 'None' ]
+                [ 11 'Read Uncommitted' ]
+                ])
+         (747,<Collection Name="Columns" Type="OutputColumn">[ [ 747 '...' ] ])
+         (732,<Property Name="LeftTextPos">[ [ 732 '<n>' ] ])
+         (732,<Property Name="TopTextPos">[ [ 732 '<n>' ] ])
+         (291,<Property Name="SqlWhere">[ [ 291 '<s>' ] ])
+         (338,<Property Name="SqlUser">[ [ 290 '0' ] [ 48 '1' ] ])
+         (16,<Property Name="SPName">[ [ 16 '<x>' ] ])
+         (16,<Property Name="SPErrors">[ [ 16 ';' ] ])
+         (338,<Property Name="Isolation">[ [ 338 'None' ] ])
+         (7,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="SqlEditMode">[
+              [ 7 '0' ]
+              ])
+         (12,<Collection Name="SPParams" Type="OutputColumn">[ [ 12 '...' ] ])
+         (24,<Property Name="SqlExtra">[ [ 24 '<s>' ] ])
+         (66,<Property Name="SqlEditMode">[ [ 66 '0' ] ])
+         ])
+  (1013,<Record
+          Type="TransformerStage">[
+          (1013,<Property Name="Name">[ [ 1013 '<x>' ] ])
+          (1013,<Property Name="NextID">[ [ 1013 '<n>' ] ])
+          (1013,<Property Name="InputPins">[ [ 1013 '<l>' ] ])
+          (1013,<Property Name="OutputPins">[ [ 1013 '<l>' ] ])
+          (347,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="ValidationStatus">[
+                 [ 347 '0' ]
+                 ])
+          (350,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="StageType">[
+                 [ 350 'CTransformerStage' ]
+                 ])
+          (27,<Collection Name="StageVars" Type="StageVar">[ [ 27 '...' ] ])
+          (662,<Property Name="ValidationStatus">[ [ 662 '0' ] ])
+          (663,<Property Name="StageType">[ [ 663 'CTransformerStage' ] ])
+          ])
+  (1159,<Record
+          Type="TrxInput">[
+          (1159,<Property Name="Name">[ [ 1159 '<x>' ] ])
+          (1159,<Property Name="Partner">[ [ 1159 '<x>' ] ])
+          (489,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="LinkType">[
+                 [ 350 '1' ]
+                 [ 139 '2' ]
+                 ])
+          (670,<Property Name="LinkType">[ [ 663 '1' ] [ 7 '2' ] ])
+          (21,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="MultiRow">[
+                [ 21 '0' ]
+                ])
+          (66,<Property Name="MultiRow">[ [ 66 '0' ] ])
+          ])
+  (1375,<Record
+          Type="TrxOutput">[
+          (1375,<Property Name="Name">[ [ 1375 '<x>' ] ])
+          (1375,<Property Name="Partner">[ [ 1375 '<x>' ] ])
+          (632,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="Reject">[
+                 [ 563 'No' ]
+                 [ 69 'Yes' ]
+                 ])
+          (686,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="RowLimit">[
+                 [ 686 '0' ]
+                 ])
+          (686,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="RoutineTransforms">[
+                 [ 682 '\(1B)' ]
+                 [ 4 'ALMCONTRAINT\(1B)' ]
+                 ])
+          (1369,<Collection
+                  Name="Columns"
+                  Type="OutputColumn">[
+                  [ 1369 '...' ]
+                  ])
+          (1334,<Property Name="LeftTextPos">[ [ 1334 '<n>' ] ])
+          (1334,<Property Name="TopTextPos">[ [ 1334 '<n>' ] ])
+          (429,<Property Name="Constraint">[ [ 429 '<e>' ] ])
+          (429,<Property Name="ParsedConstraint">[ [ 429 '<e>' ] ])
+          (410,<Property Name="SourceColumns">[ [ 410 '<l>' ] ])
+          (19,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="StageVars">[
+                [ 19 'CODEREJET' ]
+                ])
+          (627,<Property Name="Reject">[ [ 626 'No' ] [ 1 'Yes' ] ])
+          (689,<Property Name="RowLimit">[ [ 689 '0' ] ])
+          (689,<Property Name="RoutineTransforms">[ [ 689 '\(1B)' ] ])
+          (145,<Property Name="ErrorPin">[ [ 145 '0' ] ])
+          (114,<Property
+                 xml:space="preserve"
+                 PreFormatted="0"
+                 Name="ErrorPin">[
+                 [ 114 '0' ]
+                 ])
+          (1,<Property Name="Description">[ [ 1 '<x>' ] ])
+          ])
+  (528,<Record
+         Type="SeqFileStage">[
+         (528,<Property Name="Name">[ [ 528 '<x>' ] ])
+         (15,<Property Name="Description">[ [ 15 '<x>' ] ])
+         (528,<Property Name="NextID">[ [ 528 '<n>' ] ])
+         (409,<Property Name="InputPins">[ [ 409 '<l>' ] ])
+         (140,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="UnixFormat">[
+                [ 140 'DOS' ]
+                ])
+         (140,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="PipeStage">[
+                [ 140 'File' ]
+                ])
+         (140,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="UnicodeBOM">[
+                [ 60 '0' ]
+                [ 80 '1' ]
+                ])
+         (140,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="UnicodeSwapped">[
+                [ 60 '0' ]
+                [ 80 '1' ]
+                ])
+         (76,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="AllowColumnMapping">[
+               [ 76 '0' ]
+               ])
+         (140,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="StageType">[
+                [ 140 'CSeqFileStage' ]
+                ])
+         (116,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="WithFilter">[
+                [ 116 '0' ]
+                ])
+         (329,<Property Name="OutputPins">[ [ 329 '<l>' ] ])
+         (388,<Property Name="UnixFormat">[ [ 353 'DOS' ] [ 35 'Unix' ] ])
+         (388,<Property Name="PipeStage">[ [ 388 'File' ] ])
+         (388,<Property Name="UnicodeBOM">[ [ 386 '1' ] [ 2 '0' ] ])
+         (388,<Property Name="UnicodeSwapped">[ [ 386 '1' ] [ 2 '0' ] ])
+         (382,<Property Name="WithFilter">[ [ 382 '0' ] ])
+         (388,<Property Name="StageType">[ [ 388 'CSeqFileStage' ] ])
+         (2,<Property Name="AllowColumnMapping">[ [ 2 '0' ] ])
+         (1,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="NLSMapName">[
+              [ 1 'NONE' ]
+              ])
+         ])
+  (568,<Record
+         Type="SeqInput">[
+         (568,<Property Name="Name">[ [ 568 '<x>' ] ])
+         (160,<Property Name="Description">[ [ 160 '<x>' ] ])
+         (568,<Property Name="Partner">[ [ 568 '<x>' ] ])
+         (568,<Property Name="FileName">[ [ 568 '<f>' ] ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Delimiter">[
+                [ 170 '032' ]
+                [ 52 ',' ]
+                [ 54 ';' ]
+                [ 2 '@' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="QuoteChar">[
+                [ 187 '000' ]
+                [ 91 '\"' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="ColHeaders">[
+                [ 191 '0' ]
+                [ 87 '1' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="OmitNewLine">[
+                [ 278 '0' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Append">[
+                [ 234 '0' ]
+                [ 44 '1' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Backup">[
+                [ 278 '0' ]
+                ])
+         (173,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="NullString">[
+                [ 173 '%?' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="FixedWidth">[
+                [ 278 '0' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="ColSpace">[
+                [ 278 '0' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="EnforceMetaData">[
+                [ 278 '0' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Writetime">[
+                [ 278 '0' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="WaitforReader">[
+                [ 278 '0' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Flushrow">[
+                [ 278 '0' ]
+                ])
+         (278,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="PadChar">[
+                [ 218 '#' ]
+                [ 60 ]
+                ])
+         (290,<Property
+                Name="Delimiter">[
+                [ 191 ',' ]
+                [ 12 '009' ]
+                [ 14 ';' ]
+                [ 37 '000' ]
+                [ 36 '|' ]
+                ])
+         (290,<Property
+                Name="QuoteChar">[
+                [ 60 '000' ]
+                [ 85 '\"' ]
+                [ 144 '\'' ]
+                [ 1 '048' ]
+                ])
+         (290,<Property Name="ColHeaders">[ [ 277 '0' ] [ 13 '1' ] ])
+         (290,<Property Name="OmitNewLine">[ [ 287 '0' ] [ 3 '1' ] ])
+         (290,<Property Name="Append">[ [ 289 '0' ] [ 1 '1' ] ])
+         (290,<Property Name="Backup">[ [ 290 '0' ] ])
+         (290,<Property Name="FixedWidth">[ [ 248 '0' ] [ 42 '1' ] ])
+         (290,<Property Name="ColSpace">[ [ 290 '0' ] ])
+         (290,<Property Name="EnforceMetaData">[ [ 290 '0' ] ])
+         (290,<Property Name="Writetime">[ [ 290 '0' ] ])
+         (290,<Property Name="WaitforReader">[ [ 290 '0' ] ])
+         (290,<Property Name="Flushrow">[ [ 290 '0' ] ])
+         (290,<Property Name="PadChar">[ [ 272 '#' ] [ 18 ] ])
+         (3,<Property Name="NullString">[ [ 3 '\(15)' ] ])
+         ])
+  (39,<Record
+        Type="HashedFileStage">[
+        (39,<Property Name="Name">[ [ 39 '<x>' ] ])
+        (39,<Property Name="NextID">[ [ 39 '<n>' ] ])
+        (32,<Property Name="InputPins">[ [ 32 '<l>' ] ])
+        (30,<Property Name="OutputPins">[ [ 30 '<l>' ] ])
+        (35,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="UVcompatible">[
+              [ 35 '0' ]
+              ])
+        (32,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="SQLNull">[
+              [ 32 '0' ]
+              ])
+        (35,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="StageType">[
+              [ 35 'CHashedFileStage' ]
+              ])
+        (3,<Property
+             Name="Directory">[
+             [ 1 'D:\Transfert\BaseTitre' ]
+             [ 2 '#PATH_IN#' ]
+             ])
+        (4,<Property Name="UVcompatible">[ [ 4 '0' ] ])
+        (4,<Property Name="SQLNull">[ [ 4 '0' ] ])
+        (4,<Property Name="StageType">[ [ 4 'CHashedFileStage' ] ])
+        (12,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="Directory">[
+              [ 12 '#Chemin#' ]
+              ])
+        ])
+  (32,<Record
+        Type="HashedInput">[
+        (32,<Property Name="Name">[ [ 32 '<x>' ] ])
+        (32,<Property Name="Partner">[ [ 32 '<x>' ] ])
+        (32,<Property Name="FileName">[ [ 32 '<f>' ] ])
+        (28,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="ClearFile">[
+              [ 26 '1' ]
+              [ 2 '0' ]
+              ])
+        (28,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="Backup">[
+              [ 28 '0' ]
+              ])
+        (28,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="DisableCW">[
+              [ 21 '1' ]
+              [ 7 '0' ]
+              ])
+        (4,<Property Name="ClearFile">[ [ 3 '1' ] [ 1 '0' ] ])
+        (4,<Property Name="Backup">[ [ 4 '0' ] ])
+        (4,<Property Name="DisableCW">[ [ 2 '0' ] [ 2 '1' ] ])
+        (1,<Property
+             Name="CreateFileOptions">[
+             [ 1
+               'DYNAMIC MINIMUM.MODULUS 1 GROUP.SIZE 1 GENERAL SPLIT.LOAD 80 MERGE.LOAD 50 LARGE.RECORD 1628'
+               ]
+             ])
+        (1,<Property Name="DeleteFile">[ [ 1 '1' ] ])
+        (7,<Property
+             xml:space="preserve"
+             PreFormatted="0"
+             Name="CreateFileOptions">[
+             [ 3
+               'DYNAMIC MINIMUM.MODULUS 1 GROUP.SIZE 1 GENERAL SPLIT.LOAD 80 MERGE.LOAD 50 LARGE.RECORD 1628'
+               ]
+             [ 4 'DYNAMIC' ]
+             ])
+        (3,<Property
+             xml:space="preserve"
+             PreFormatted="0"
+             Name="DeleteFile">[
+             [ 3 '1' ]
+             ])
+        ])
+  (38,<Record
+        Type="HashedOutput">[
+        (38,<Property Name="Name">[ [ 38 '<x>' ] ])
+        (38,<Property Name="Partner">[ [ 38 '<x>' ] ])
+        (38,<Property Name="FileName">[ [ 38 '<f>' ] ])
+        (34,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="InMemory">[
+              [ 26 '0' ]
+              [ 8 '1' ]
+              ])
+        (34,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="Normalize">[
+              [ 34 'Un-Normalized' ]
+              ])
+        (38,<Property Name="LeftTextPos">[ [ 38 '<n>' ] ])
+        (38,<Property Name="TopTextPos">[ [ 38 '<n>' ] ])
+        (34,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="RecordLevelRead">[
+              [ 34 '0' ]
+              ])
+        (38,<Collection Name="Columns" Type="OutputColumn">[ [ 38 '...' ] ])
+        (4,<Property Name="InMemory">[ [ 3 '0' ] [ 1 '1' ] ])
+        (4,<Property Name="Normalize">[ [ 4 'Un-Normalized' ] ])
+        (4,<Property Name="RecordLevelRead">[ [ 4 '0' ] ])
+        ])
+  (331,<Record
+         Type="SeqOutput">[
+         (331,<Property Name="Name">[ [ 331 '<x>' ] ])
+         (331,<Property Name="Partner">[ [ 331 '<x>' ] ])
+         (331,<Property Name="FileName">[ [ 331 '<f>' ] ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="ColDelim">[
+               [ 1 '032' ]
+               [ 10 ';' ]
+               [ 11 ',' ]
+               [ 3 '009' ]
+               [ 2 ]
+               ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="QuoteChar">[
+               [ 2 '000' ]
+               [ 25 '\"' ]
+               ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="ColHeaders">[
+               [ 9 '0' ]
+               [ 18 '1' ]
+               ])
+         (1,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="NullString">[
+              [ 1 '%?' ]
+              ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="FixedWidth">[
+               [ 26 '0' ]
+               [ 1 '1' ]
+               ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="ColSpace">[
+               [ 27 '0' ]
+               ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="EnforceMetaData">[
+               [ 5 'Map empty string' ]
+               [ 22 'Pad with SQL NULL' ]
+               ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="Readtimeout">[
+               [ 27 '0' ]
+               ])
+         (331,<Collection Name="Columns" Type="OutputColumn">[ [ 331 '...' ] ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="Waitforwriter">[
+               [ 27 '0' ]
+               ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="PadChar">[
+               [ 25 '#' ]
+               [ 2 ]
+               ])
+         (27,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="SuppressTruncWarn">[
+               [ 8 '1' ]
+               [ 19 '0' ]
+               ])
+         (328,<Property Name="LeftTextPos">[ [ 328 '<n>' ] ])
+         (328,<Property Name="TopTextPos">[ [ 328 '<n>' ] ])
+         (304,<Property
+                Name="ColDelim">[
+                [ 36 '009' ]
+                [ 200 ',' ]
+                [ 31 ';' ]
+                [ 37 '000' ]
+                ])
+         (304,<Property
+                Name="QuoteChar">[
+                [ 141 '\"' ]
+                [ 108 '\'' ]
+                [ 55 '000' ]
+                ])
+         (304,<Property Name="ColHeaders">[ [ 289 '0' ] [ 15 '1' ] ])
+         (304,<Property Name="FixedWidth">[ [ 66 '1' ] [ 238 '0' ] ])
+         (304,<Property Name="ColSpace">[ [ 304 '0' ] ])
+         (304,<Property
+                Name="EnforceMetaData">[
+                [ 303 'Pad with SQL NULL' ]
+                [ 1 'Map empty string' ]
+                ])
+         (304,<Property Name="Readtimeout">[ [ 304 '0' ] ])
+         (304,<Property Name="Waitforwriter">[ [ 304 '0' ] ])
+         (304,<Property Name="PadChar">[ [ 299 '#' ] [ 4 ] [ 1 '000' ] ])
+         (304,<Property Name="SuppressTruncWarn">[ [ 271 '0' ] [ 33 '1' ] ])
+         ])
+  (516,<Record
+         Type="ODBCInput">[
+         (516,<Property Name="Name">[ [ 516 '<x>' ] ])
+         (516,<Property Name="Partner">[ [ 516 '<x>' ] ])
+         (515,<Property Name="TableName">[ [ 515 '<x>' ] ])
+         (310,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Action">[
+                [ 46 'Clear the table, then insert rows' ]
+                [ 1 'User-defined SQL' ]
+                [ 34 'Insert rows without clearing' ]
+                [ 2 'Replace existing rows completely' ]
+                [ 63 'Update existing or insert new rows' ]
+                [ 147 'Insert new or update existing rows' ]
+                [ 17 'Update existing rows only' ]
+                ])
+         (516,<Property Name="SqlInsert">[ [ 516 '<s>' ] ])
+         (512,<Property Name="SqlUpdate">[ [ 512 '<s>' ] ])
+         (512,<Property Name="SqlDelete">[ [ 512 '<s>' ] ])
+         (310,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="Isolation">[
+                [ 306 'None' ]
+                [ 2 'Read Uncommitted' ]
+                [ 2 'Auto-commit' ]
+                ])
+         (310,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="TransactionSize">[
+                [ 310 '0' ]
+                ])
+         (310,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="ArraySize">[
+                [ 310 '1' ]
+                ])
+         (310,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="TXNBehaviour">[
+                [ 299 '40' ]
+                [ 11 '8' ]
+                ])
+         (310,<Property
+                xml:space="preserve"
+                PreFormatted="0"
+                Name="EnableTxGroup">[
+                [ 310 '0' ]
+                ])
+         (206,<Property
+                Name="Action">[
+                [ 39 'Clear the table, then insert rows' ]
+                [ 72 'Insert new or update existing rows' ]
+                [ 52 'Insert rows without clearing' ]
+                [ 39 'Update existing or insert new rows' ]
+                [ 3 'Call stored procedure' ]
+                [ 1 'Update existing rows only' ]
+                ])
+         (206,<Property Name="Isolation">[ [ 2 'Auto-commit' ] [ 204 'None' ] ])
+         (206,<Property Name="TransactionSize">[ [ 206 '0' ] ])
+         (206,<Property Name="ArraySize">[ [ 206 '1' ] ])
+         (206,<Property Name="TXNBehaviour">[ [ 201 '40' ] [ 5 '0' ] ])
+         (206,<Property Name="EnableTxGroup">[ [ 206 '0' ] ])
+         (3,<Property Name="SPErrors">[ [ 3 ';' ] ])
+         (3,<Property Name="Description">[ [ 3 '<x>' ] ])
+         (1,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="DDLCreate">[
+              [ 1
+                'CREATE TABLE \"MATERIEL_tmp\"(MAT_CLE_MATERIEL int NOT NULL PRIMARY KEY, MAT_MATRICULE int, MAT_TRIGRAMME varchar(20), MAT_CENTREDECOUT_MAT varchar(10), MAT_FAMILLE varchar(25), MAT_SOUSFAMILLE varchar(40), MAT_CENTREDECOUT_ENT varchar(10), MAT_CLE_BUREAU int, MAT_UTILISATEUR varchar(40), MAT_NOMPOSTE varchar(20), MAT_CENTREDECOUT_UTI varchar(10), MAT_MARQUE varchar(25));'
+                ]
+              ])
+         ])
+  (487,<Record
+         Type="CustomStage">[
+         (487,<Property Name="Name">[ [ 487 '<x>' ] ])
+         (487,<Property Name="NextID">[ [ 487 '<n>' ] ])
+         (353,<Property Name="InputPins">[ [ 353 '<l>' ] ])
+         (263,<Property Name="OutputPins">[ [ 263 '<l>' ] ])
+         (38,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="StageType">[
+               [ 6 'CCollector' ]
+               [ 17 'ORAOCI9' ]
+               [ 8 'XMLOutput' ]
+               [ 2 'MSOLEDB' ]
+               [ 1 'Folder' ]
+               [ 1 'XMLInput' ]
+               [ 3 'AGGREGATOR' ]
+               ])
+         (487,<Collection
+                Name="Properties"
+                Type="CustomProperty">[
+                [ 487 '...' ]
+                ])
+         (449,<Property
+                Name="StageType">[
+                [ 177 'MSOLEDB' ]
+                [ 64 'ftp' ]
+                [ 2 'SQLBLK7' ]
+                [ 94 'ORAOCI9' ]
+                [ 36 'AGGREGATOR' ]
+                [ 40 'CCollector' ]
+                [ 36 'sort' ]
+                ])
+         (165,<Property Name="AllowColumnMapping">[ [ 165 '0' ] ])
+         (3,<Property Name="Description">[ [ 3 '<x>' ] ])
+         (10,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="AllowColumnMapping">[
+               [ 10 '0' ]
+               ])
+         (9,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="NextRecordID">[
+              [ 9 '0' ]
+              ])
+         (89,<Property Name="NextRecordID">[ [ 89 '0' ] ])
+         ])
+  (301,<Record
+         Type="CustomOutput">[
+         (301,<Property Name="Name">[ [ 301 '<x>' ] ])
+         (301,<Property Name="Partner">[ [ 301 '<x>' ] ])
+         (301,<Collection Name="Columns" Type="OutputColumn">[ [ 301 '...' ] ])
+         (285,<Property Name="LeftTextPos">[ [ 285 '<n>' ] ])
+         (285,<Property Name="TopTextPos">[ [ 285 '<n>' ] ])
+         (144,<Collection
+                Name="Properties"
+                Type="CustomProperty">[
+                [ 144 '...' ]
+                ])
+         ])
+  (518,<Record
+         Type="CustomInput">[
+         (518,<Property Name="Name">[ [ 518 '<x>' ] ])
+         (518,<Property Name="Partner">[ [ 518 '<x>' ] ])
+         (89,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="LinkType">[
+               [ 89 '1' ]
+               ])
+         (89,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="ConditionNotMet">[
+               [ 89 'Fail' ]
+               ])
+         (89,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="LookupFail">[
+               [ 89 'Fail' ]
+               ])
+         (88,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="TXNBehaviour">[
+               [ 86 '0' ]
+               [ 2 '40' ]
+               ])
+         (88,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="EnableTxGroup">[
+               [ 88 '0' ]
+               ])
+         (429,<Property Name="LinkType">[ [ 429 '1' ] ])
+         (429,<Property Name="ConditionNotMet">[ [ 429 'Fail' ] ])
+         (429,<Property Name="LookupFail">[ [ 429 'Fail' ] ])
+         (244,<Collection
+                Name="Properties"
+                Type="CustomProperty">[
+                [ 244 '...' ]
+                ])
+         (392,<Property Name="TXNBehaviour">[ [ 336 '0' ] [ 56 '40' ] ])
+         (392,<Property Name="EnableTxGroup">[ [ 392 '0' ] ])
+         (2,<Property
+              xml:space="preserve"
+              PreFormatted="0"
+              Name="TransactionSize">[
+              [ 2 '0' ]
+              ])
+         (73,<Property Name="TransactionSize">[ [ 73 '0' ] ])
+         (2,<Property Name="Description">[ [ 2 '<x>' ] ])
+         ])
+  (152,<Record
+         Type="JSExecCmdActivity">[
+         (152,<Property Name="Name">[ [ 152 '<x>' ] ])
+         (152,<Property Name="NextID">[ [ 152 '<n>' ] ])
+         (11,<Property Name="FullDescription">[ [ 11 '<x>' ] ])
+         (152,<Property Name="Path">[ [ 152 '<f>' ] ])
+         (152,<Property Name="Parameters">[ [ 152 '<x>' ] ])
+         (152,<Property Name="CheckPoint">[ [ 152 '0' ] ])
+         (152,<Property Name="StageType">[ [ 152 'CExecCommandActivity' ] ])
+         (54,<Property Name="OutputPins">[ [ 54 '<l>' ] ])
+         (64,<Property Name="InputPins">[ [ 64 '<l>' ] ])
+         (7,<Property Name="LogText">[ [ 7 '<x>' ] ])
+         ])
+  (425,<Record
+         Type="JSJobActivity">[
+         (425,<Property Name="Name">[ [ 425 '<x>' ] ])
+         (425,<Property Name="NextID">[ [ 425 '<n>' ] ])
+         (389,<Property Name="OutputPins">[ [ 389 '<l>' ] ])
+         (422,<Property
+                Name="ExecutionType">[
+                [ 391 '1' ]
+                [ 30 '0' ]
+                [ 1 '2' ]
+                ])
+         (425,<Property Name="Jobname">[ [ 425 '<x>' ] ])
+         (4,<Collection
+              Name="JobInvocationID"
+              Type="ParamValues">[
+              [ 4 '...' ]
+              ])
+         (425,<Property Name="CheckPoint">[ [ 425 '0' ] ])
+         (425,<Property Name="StageType">[ [ 425 'CJobActivity' ] ])
+         (386,<Property Name="InputPins">[ [ 386 '<l>' ] ])
+         (418,<Collection
+                Name="ParameterValues"
+                Type="ParamValues">[
+                [ 418 '...' ]
+                ])
+         ])
+  (460,<Record
+         Type="JSActivityOutput">[
+         (460,<Property Name="Name">[ [ 460 '<x>' ] ])
+         (460,<Property Name="Partner">[ [ 460 '<x>' ] ])
+         (460,<Property
+                Name="ConditionType">[
+                [ 225 '0' ]
+                [ 199 '2' ]
+                [ 36 '6' ]
+                ])
+         (460,<Property Name="LeftTextPos">[ [ 460 '<n>' ] ])
+         (460,<Property Name="TopTextPos">[ [ 460 '<n>' ] ])
+         (460,<Property Name="SourceID">[ [ 460 '<n>' ] ])
+         (309,<Property Name="TriggerExpression">[ [ 309 '<e>' ] ])
+         ])
+  (460,<Record
+         Type="JSActivityInput">[
+         (460,<Property Name="Name">[ [ 460 '<x>' ] ])
+         (460,<Property Name="Partner">[ [ 460 '<x>' ] ])
+         (460,<Property Name="LinkType">[ [ 460 '1' ] ])
+         ])
+  (273,<Record
+         Type="Annotation">[
+         (273,<Property Name="Name">[ [ 273 '<x>' ] ])
+         (231,<Property Name="AnnotationType">[ [ 225 '0' ] [ 6 '1' ] ])
+         (249,<Property Name="AnnotationText">[ [ 249 '<x>' ] ])
+         (273,<Property Name="TextFont">[ [ 273 '<x>' ] ])
+         (231,<Property
+                Name="TextHorizontalJustification">[
+                [ 230 '1' ]
+                [ 1 '0' ]
+                ])
+         (231,<Property
+                Name="TextVerticalJustification">[
+                [ 226 '1' ]
+                [ 3 '0' ]
+                [ 2 '2' ]
+                ])
+         (231,<Property
+                Name="TextColor">[
+                [ 221 '0' ]
+                [ 4 '4227327' ]
+                [ 6 '255' ]
+                ])
+         (273,<Property Name="BackgroundColor">[ [ 273 '<n>' ] ])
+         (231,<Property Name="BackgroundTransparent">[ [ 224 '0' ] [ 7 '1' ] ])
+         (231,<Property Name="BorderVisible">[ [ 225 '1' ] [ 6 '0' ] ])
+         (42,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="AnnotationType">[
+               [ 38 '0' ]
+               [ 4 '1' ]
+               ])
+         (42,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="TextHorizontalJustification">[
+               [ 8 '1' ]
+               [ 34 '0' ]
+               ])
+         (42,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="TextVerticalJustification">[
+               [ 8 '1' ]
+               [ 34 '0' ]
+               ])
+         (42,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="TextColor">[
+               [ 41 '0' ]
+               [ 1 '255' ]
+               ])
+         (42,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="BackgroundTransparent">[
+               [ 42 '0' ]
+               ])
+         (42,<Property
+               xml:space="preserve"
+               PreFormatted="0"
+               Name="BorderVisible">[
+               [ 42 '1' ]
+               ])
+         (111,<Property Name="NextID">[ [ 111 '<n>' ] ])
+         ])
+  (6,<Record
+       Type="JSCondition">[
+       (6,<Property Name="Name">[ [ 6 '<x>' ] ])
+       (6,<Property Name="NextID">[ [ 6 '<n>' ] ])
+       (2,<Property Name="InputPins">[ [ 2 '<l>' ] ])
+       (6,<Property Name="OutputPins">[ [ 6 '<l>' ] ])
+       (6,<Property Name="StageType">[ [ 6 'CCondition' ] ])
+       (1,<Property Name="FullDescription">[ [ 1 '<x>' ] ])
+       ])
+  (4,<Record
+       Type="JSSequencer">[
+       (4,<Property Name="Name">[ [ 4 '<x>' ] ])
+       (4,<Property Name="NextID">[ [ 4 '<n>' ] ])
+       (4,<Property Name="InputPins">[ [ 4 '<l>' ] ])
+       (4,<Property Name="OutputPins">[ [ 4 '<l>' ] ])
+       (4,<Property Name="SequencerType">[ [ 4 '1' ] ])
+       (4,<Property Name="StageType">[ [ 4 'CSequencer' ] ])
+       ])
+  ]

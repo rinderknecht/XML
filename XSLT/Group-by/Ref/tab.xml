@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<cities>
+  <city name="Bergamo" country="Italia"        pop="5">a</city>
+  <city name="Paris"   country="France"        pop="7">b</city>
+  <city name="Paris"   country="USA"           pop="1">b</city>
+  <city name="France"  country="USA"           pop="2">c</city>
+  <city name="Seoul"   country="South Korea"   pop="8">h</city>
+  <city name="France"  country="France"        pop="0">i</city>
+  <city name="München" country="Deutschland"   pop="4">h</city>
+  <city name="Lyon"    country="France"        pop="2">d</city>
+  <city name="Venezia" country="Italia"        pop="1">e</city>
+  <city name="Zürich"  country="Switzerland"   pop="1">f</city>
+  <city name="London"  country="Great Britain" pop="3">g</city>
+  <city name="Busan"   country="South Korea"   pop="5">i</city>
+</cities>

@@ -1,0 +1,41 @@
+(* This file has been automatically by dtd2cduce *)
+type SubRecord = <SubRecord>[ Property* ];;
+type Collection = <Collection Type=String Name=String>[ SubRecord* ];;
+type DSXML = <DSXML>[ Any* ];;
+type ListItem =
+       <ListItem xml:space=?("default" | "preserve") DisplayName=String>[
+          ( Char )* ];;
+type Property =
+       <Property xml:space=?("default" | "preserve") PreFormatted=?("0" | "1") Name=String>[
+          ( Char | ListItem | DSXML )* ];;
+type Record =
+       <Record IsStage=?("0" | "1") Readonly=?("0" | "1") Type=String TimeModified=?String DateModified=?String Identifier=String>[
+          (Property | Collection)* ];;
+type Transforms = <Transforms>[ Record* ];;
+type TableDefinitions = <TableDefinitions>[ Record* ];;
+type StageTypes = <StageTypes>[ Record* ];;
+type Routines = <Routines>[ Record* ];;
+type MachineProfiles = <MachineProfiles>[ Record* ];;
+type DataElements = <DataElements>[ Record* ];;
+type IMSViewset =
+       <IMSViewset TimeModified=?String DateModified=?String Identifier=String>[
+          Record* ];;
+type IMSDatabase =
+       <IMSDatabase TimeModified=?String DateModified=?String Identifier=String>[
+          Record* ];;
+type SharedContainer =
+       <SharedContainer TimeModified=?String DateModified=?String Identifier=String>[
+          Record* ];;
+type Job =
+       <Job TimeModified=?String DateModified=?String Identifier=String>[
+          Record* ];;
+type Header =
+       <Header ServerVersion=?String Time=?String Date=?String ToolInstanceID=?String ServerName=?String ToolVersion=String ExportingTool=?String CharacterSet=?String ClientInstallPath=?String>[
+           ];;
+type DSExport =
+       <DSExport>[
+          (Header
+           (Job | SharedContainer | IMSDatabase | IMSViewset | DataElements
+            | MachineProfiles | Routines | StageTypes | TableDefinitions
+            | Transforms)+)
+          ];;
