@@ -1,0 +1,102 @@
+%%-*-latex-*-
+
+\documentclass{article}
+
+% Language
+%
+\usepackage[british]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{hyphenat}
+
+% Figures/Graphics
+%
+\usepackage{graphicx}   % Inclusion
+\usepackage{float}      % Before package `wrapfig'
+\usepackage{subfig}     % Subfigures
+\captionsetup[subfloat]{justification=raggedleft}
+\usepackage{wrapfig}    % Wrapping text around figures
+
+% Tables
+%
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{hhline}
+
+% Maths
+%
+%\newcommand\bmmax{0}
+\usepackage{amssymb,amsmath,stmaryrd}%,txfonts,bm}
+
+% Algorithms
+%
+\usepackage{clrscode}
+
+% Miscellanea
+%
+\usepackage{url}
+\usepackage{xspace}
+%\usepackage[draft]{pdfdraftcopy}
+
+% New commands
+%
+\newcommand\XML{\textsf{XML}\xspace}
+\newcommand\XSLT{\textsf{XSLT}\xspace}
+\newcommand\el{[\,]}
+\newcommand\cons[2]{[{#1}\mid{#2}]}
+\newcommand\Prolog{\textsf{Prolog}\xspace}
+\newcommand\MathML{\textsf{MathML}\xspace}
+\newcommand\XPath{\textsf{XPath}\xspace}
+\newcommand\XQuery{\textsf{XQuery}\xspace}
+\newcommand\query[2]{\langle #1 \mid #2\rangle}
+\newcommand\prj[2]{{#1}\raisebox{-2.5pt}{\(\big|_{#2}\)}}
+\newcommand{\LogAnd}{\textbf{and} }
+\newcommand{\LogOr}{\textbf{or} }
+\newcommand{\Inter}[2]{\llbracket{#1},{#2}\rrbracket}
+\newcommand\wildcard{{\Huge\_}\xspace}
+
+% Author, title, date
+%
+\title{Matching pairwise divergent paths in \XML streams}
+\author{Christian Rinderknecht\\\\
+{\small Konkuk University}\\
+{\small College of Information and Telecommunications}\\
+{\small Department of Internet and Multimedia}\\
+{\small 143-701 Seoul Gwangjin-gu Hwayang-dong, South Korea}\\
+{\small \url{rinderkn@konkuk.ac.kr}}
+}
+
+% Document
+%
+\begin{document}
+
+\maketitle
+
+\input{abstract}
+
+% Sections
+%
+\input{introduction}
+\input{problem}
+\input{naive}
+\input{stack}
+\input{table}
+\input{conclusion}
+
+\paragraph{Acknowledgements.}
+
+This work started as a question by Dr. Hyo-Seop Shin, of Konkuk
+University, which would be equivalent to a special case of the problem
+we solve here, where all the kinds in a query are different. His
+support and pieces of advice encouraged me to search for a
+stack\hyp{}based implementation, following the work of others in the
+\XML database community. He was kind enough to provide me part of the
+bibliographical references which follow.
+
+% Bibliography
+%
+\bibliographystyle{plain}
+\bibliography{divergent}
+
+\end{document}

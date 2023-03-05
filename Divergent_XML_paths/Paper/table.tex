@@ -1,0 +1,999 @@
+%%-*-latex-*-
+
+\section{A table-based algorithm}
+\label{table}
+
+\subsection{Basic definitions}
+\label{basics}
+
+\begin{wrapfigure}[7]{r}{0pt}
+\(
+\begin{array}{|c||c|c|c|}
+\hhline{~||---}
+\multicolumn{1}{c||}{} & f & g & h\\
+\hhline{=::===}
+x & 1 & 2 & 3\\
+\hhline{-||---}
+y & 4 & 5 & 6\\ 
+\hhline{-||---}
+z & 7 & 8 & 9\\
+\hhline{-||---}
+\end{array}
+\)
+\caption{A table} \label{table:example}
+\end{wrapfigure}
+
+\subsection{Tables}
+
+The \emph{tables} we shall consider further have two entries, the
+\emph{vertical entries} and the \emph{horizontal entries}. For the
+sake of brevity, we shall speak of \emph{entries} instead of vertical
+entries.  For example, in the table at figure~\ref{table:example},
+\(x\), \(y\) and \(z\) are the (vertical) entries and the \(a\), \(b\)
+and \(c\) are the horizontal entries. The \emph{rows} are the
+horizontal sections of the table containing exactly one horizontal
+entry. For example \((x, 1, 2, 3)\) is a row (more precisely, the
+first row). Dually, the \emph{columns} are sections of the table which
+contain exactly one vertical entry. For example \((g, 2, 5, 8)\) is a
+column (more precisely, the second column). A \emph{table index}, or
+\emph{index} for short, is a positive, non-zero, integer which
+characterises an (horizontal) entry. Entries are ordered by ascending
+indexes, starting with \(1\). This way we can speak of ``first
+entry'', ``second entry'' etc. A \emph{cell} is the intersection of a
+row and a column. The first cell of a given row is the intersection of
+this row with the first column. Dually, the first cell of a given
+column is the intersection of this column with the first row. We shall
+denote the contents of a cell using a functional notation,
+e.g. \(f(x)\) is the cell at the intersection of the column \(f\) and
+the raw whose entry is \(x\), in other words: \(f(x) = 1\); another
+example is \(h(y) = 6\) etc.
+
+
+\subsection{Elements and unification}
+
+Let us extend the concept of element to cope with \emph{undefined
+  element}, noted \(\Omega\), which have no kind. Now, a \emph{ground
+  element} is an element which is not undefined (and thus is
+kinded). The \emph{unification} of two elements \(\varepsilon_1\) and
+\(\varepsilon_2\), noted \(\varepsilon_1 \otimes \varepsilon_2\), is
+an element defined by cases as follows:
+\begin{align*}
+   \Omega \otimes \Omega &= \Omega\\
+   \Omega \otimes \varepsilon &= \varepsilon\\
+   \varepsilon \otimes \Omega &= \varepsilon
+\end{align*}
+\noindent
+and if \(\varepsilon_1 \neq \Omega\) and \(\varepsilon_2 \neq
+\Omega\), then \(\varepsilon_1 \otimes \varepsilon_2\) is undefined.
+
+
+\subsection{\(n\)-tuples and unification}
+
+Let us extend the concept of \(n\)-tuple of elements to cope with
+\(n\)-tuples of ground or undefined elements. We also constrain the
+\(i\)-th component of the tuple to be of kind \(\kappa_i\) --- this
+ensures the unicity of a solution. If the context is clear, an
+\emph{\(n\)-tuple} will refer to an \(n\)-tuple of elements. A
+\emph{ground tuple} is a tuple made of ground elements. A
+\emph{solution tuple} is a tuple of elements which satisfy the
+condition stated in section~\ref{problem}, i.e., any two elements are
+disjoint (non-overlapping). In our example, \((\Omega, b_1, c_2)\) is
+a triple, \((a_1, b_1, c_2)\) is a ground triple and \((a_4, b_1,
+c_2)\) is a solution triple. Moreover, we can extend the unification
+on elements to \(n\)-tuples as follows. Let \((\varepsilon_1,
+\varepsilon_2, \varepsilon_3)\) and \((\varepsilon'_1, \varepsilon'_2,
+\varepsilon'_3)\) be two triples of elements. Then, by definition
+\[
+(\varepsilon_1, \varepsilon_2, \varepsilon_3) \otimes (\varepsilon'_1,
+\varepsilon'_2, \varepsilon'_3) = (\varepsilon_1 \otimes
+\varepsilon'_1, \varepsilon_2 \otimes \varepsilon'_2, \varepsilon_3
+\otimes \varepsilon'_3)
+\]
+
+
+\subsection{The \(\tau\)-table}
+\label{tau_table}
+
+Let us define a global table, called the \emph{\(\tau\)-table}. The
+entries are indexes in increasing order (first is \(1\)). The first
+column, named \(\overline{\tau}\), contains \(n\)-tuples of
+elements. The second column, named \(\overline{\omega}\) contains
+\(n\)-tuples whose components are sets of entries (indexes) in the
+same table and called \emph{\(\omega\)-sets}. These tuples are called
+\emph{\(\omega\)-tuples} when \(n\) is implied. For the sake of
+clarity, the first column, \(\overline{\tau}\), can be divided into
+\(n\) sub-columns, one for each kind of element, noted
+\(\overline{\tau}|_j\) for the \(j\)-th sub-column of kind
+\(\kappa_j\), and the second column can be presented following the
+same schema, with sub-columns named \(\overline{\omega}|_j\). The
+shape of the \(\tau\)-table is shown in table~\ref{tau_table_shape}.
+\begin{table}
+\[
+\begin{array}{|c||cccc|cccc|}
+\hhline{~--------}
+  \multicolumn{1}{c||}{} 
+& \multicolumn{4}{c|}{\overline{\tau}}
+& \multicolumn{4}{c|}{\overline{\omega}}\\
+\hhline{~--------}
+  \multicolumn{1}{c||}{}
+& \overline{\tau}|_1
+& \overline{\tau}|_2
+& \ldots
+& \overline{\tau}|_n
+& \overline{\omega}|_1
+& \overline{\omega}|_2
+& \ldots
+& \overline{\omega}|_n\\
+\hhline{=::========}
+  1 
+& \wildcard & \wildcard & \dots & \wildcard 
+& \wildcard & \wildcard & \dots & \wildcard\\
+\hhline{-||--------}
+  2
+& \wildcard & \wildcard & \dots & \wildcard 
+& \wildcard & \wildcard & \dots & \wildcard\\
+\hhline{-||--------}
+  \vdots
+& \vdots & \vdots & \vdots & \vdots 
+& \vdots & \vdots & \vdots & \vdots\\
+\hhline{-||--------}
+\end{array}
+\]
+\caption{General shape of the \(\tau\)-tables}
+\label{tau_table_shape}
+\end{table}
+The cell at the intersection of the raw whose entry is \(i\) and the
+sub-column is \(\overline{\omega}|_j\), noted
+\(\overline{\omega}|_j(i)\), is interpreted as a set of entries in the
+\(\tau\)-table such that the \(j\)-th component of the \(n\)-tuple is
+\(\Omega\). Formally\footnote{The interval on integers from \(x\) to
+  \(y\) included is noted \(\llbracket x, y \rrbracket\) and ``For all
+  \(x\) then (do) \(P(x)\)'' is noted \(\forall x.P(x)\).}:
+\[
+\forall i \in \llbracket 1, p \rrbracket. \forall j \in\llbracket 1, n
+\rrbracket. \forall k \in
+\overline{\omega}|_j(i). \overline{\tau}|_j(k) = \Omega
+\]
+\noindent For example, consider the table~\ref{tau_table_example},
+were the kinds are \(a\), \(b\) and \(c\). For more simplicity,
+assuming that the kinds are ordered \(a < b < c\), we can note
+\(\overline{\omega}|_a\) instead of \(\overline{\omega}|_1\),
+\(\overline{\omega}|_b\) instead of \(\overline{\omega}|_2\) and
+\(\overline{\omega}|_c\) instead of \(\overline{\omega}|_3\).
+\begin{table}
+\[
+\begin{array}{|c||ccc|ccc|}
+\hhline{~------}
+  \multicolumn{1}{c||}{} 
+& \multicolumn{3}{c|}{\overline{\tau}}
+& \multicolumn{3}{c|}{\overline{\omega}}\\
+\hhline{~------}
+  \multicolumn{1}{c||}{} 
+& \overline{\tau}|_a & \overline{\tau}|_b & \overline{\tau}|_c 
+& \overline{\omega}|_a & \overline{\omega}|_b &
+  \overline{\omega}|_c\\ 
+\hhline{=::======}
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+\hhline{-||------}
+7  & \Omega & \Omega & c_2 & \{7,8,10\} & \{7,9\} & \varnothing\\
+8  & \Omega & b_1    & c_2 & & &\\
+9  & a_2    & \Omega & c_2 & & &\\
+10 & \Omega & b_4    & c_2 & & &\\
+11 & a_2    & b_4    & c_2 & & &\\
+\hhline{-||------}
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+\hhline{-||------}
+\end{array}
+\]
+\caption{Example of \(\tau\)-table}
+\label{tau_table_example}
+\end{table}
+Note that
+\begin{itemize}
+
+  \item not all rows are separated by horizontal lines, which gives
+    the feeling that some successive rows have a common meaning
+    (e.g. entries from \(7\) to \(11\) appear as gathered because of
+    the line before row \(7\) and after row \(11\));
+
+  \item many cells which should contain an \(\omega\)-set are empty
+    because the corresponding \(\omega\)-set is undefined (see
+    sub-columns \(\overline{\omega}|_a\), \(\overline{\omega}|_b\) and
+    \(\overline{\omega}|_c\)).
+
+\end{itemize}
+The \(\omega\)-set \(\overline{\omega}|_a(7) = \{7,8,10\}\) refers to
+the entries \(7\), \(8\) and \(10\). These entries have \(\Omega\) in
+the sub-column \(\tau|_a\): the full triples are respectively
+\((\Omega, \Omega, c_2)\), \((\Omega, b_1, c_2)\) and \((\Omega, b_4,
+c_2)\). Similarly, the \(\omega\)-set \(\overline{\omega}|_b(7) =
+\{7,9\}\) refers to \emph{some} entries whose triples have a \(b\)
+component equal to \(\Omega\): \((\Omega, \Omega, c_2)\) and \((a_2,
+\Omega, c_2)\).
+
+
+\subsection{The attribute table}
+\label{attr_table}
+
+In order to tackle our problem, we need a second kind of data
+structure. Let us map every node in the \XML tree to a record, called
+\emph{node attributes}, made of a table index and an \(n\)-tuple of
+\(\omega\)-sets. This table indexes and the elements of these
+\(\omega\)-sets are entries to the \(\tau\)-table we defined in
+section~\ref{tau_table}. For the sake of clarity, we shall gather
+these node attributes into a table, called the \emph{attribute table},
+whose (horizontal) entries are the nodes (modelling the elements), the
+first vertical entry is the table index and the second vertical entry
+is the \(n\)-tuple of \(\omega\)-sets, or \emph{\(\omega\)-tuple} when
+\(n\) is implied. For the sake of clarity, the column of
+\(\omega\)-tuples is divided in \(n\) sub-columns, as in the
+\(\tau\)-table, and is named \(\overline{\omega}\), just as in the
+\(\tau\)-table: the possible ambiguity is removed by looking at the
+argument: \(\overline{\omega}(\varepsilon)\) refers to the attribute
+table (\(\varepsilon\) is the notation for an element) whereas
+\(\overline{\omega}(i)\) refers to the \(\tau\)-table (\(i\) is the
+notation for an index).
+
+Keep in mind that it is important to access each attribute in constant
+time from each node, that is why it is better to implement this table
+as attributes of the nodes in the \XML tree. The table
+excerpt~\ref{attr_table_example} shows the attributes of nodes
+\(a_2\), \(b_4\) and \(c_2\). The first column, named \(I\), contains
+one index of the \(\tau\)-table. For example, \(I(a_2) = 4\) and the
+\(\omega\)-set \(\overline{\omega}|_a(c_2) = \{7,8,10\}\) contains
+entries (here, indexes) to the \(\tau\)-table~\ref{tau_table_example}.
+\begin{table}[h]
+\[
+\begin{array}{|c||c|ccc|}
+\hhline{~----}
+\multicolumn{1}{c||}{} & & \multicolumn{3}{c|}{\overline{\omega}}\\
+\hhline{~~---}
+  \multicolumn{1}{c||}{} 
+& I 
+& \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c\\
+\hhline{=::====}
+\vdots & \vdots & \vdots & \vdots & \vdots\\
+\hhline{-||----}
+a_2 & 4 & \varnothing & \{4\} & \{4\}\\
+\hhline{-||----}
+b_4 & 5 & \{5\} & \varnothing & \{5, 6\}\\
+\hhline{-||----}
+c_2 & 7 & \{7,8,10\} & \{7,9,12\} & \{12,13,14\}\\
+\hhline{-||----}
+\vdots & \vdots & \vdots & \vdots & \vdots\\
+\hhline{-||----}
+\end{array}
+\]
+\caption{Example of node attributes}
+\label{attr_table_example}
+\end{table}
+
+
+\subsection{Algorithm}
+
+The algorithm for solving the problem is as follows. For each
+element \(\varepsilon\) of kind \(\kappa\) inputted from the \XML
+stream do the following in turn.
+\begin{enumerate}
+
+  \item \label{algo:tau_insertion} Create and initialise a row in the
+    \(\tau\)-table:
+  \begin{enumerate} 
+
+    \item \label{algo:tau_insertion:1} if the last row has index \(m\)
+      (if there is no row, then take \(m=0\)), then create an empty
+      row in the \(\tau\)-table at index \(m+1\);
+
+    \item \label{algo:tau_insertion:2} initialise the corresponding
+      tuple with \(\varepsilon\) as component of kind \(\kappa\) and the
+      remaining components of the triple with \(\Omega\). Formally,
+      let \(j \in \llbracket 1, n \rrbracket\) such that
+      \(\overline{\tau}|_j=\kappa\), then\footnote{The assignment of
+        \(y\) to \(x\) is noted \(x \leftarrow y\).}
+      \[
+       \overline{\tau}|_j(m+1) \leftarrow \varepsilon \; \text{and} \;
+       \forall k \neq j.\overline{\tau}|_k(m+1) \leftarrow \Omega
+      \]
+
+    \item \label{algo:tau_insertion:3} set the \(\omega\)-set
+      corresponding to kind \(\kappa\) to \(\varnothing\) and the
+      others to \(\{m+1\}\).
+    \[
+      \overline{\omega}|_j(m+1) \leftarrow \varnothing \; \text{and}
+      \; \forall k \neq j.\overline{\omega}|_k(m+1) \leftarrow \{m+1\}
+    \]
+  
+  \end{enumerate}
+
+  \item \label{algo:attr_insertion} Create and initialise a row in the
+    attribute table:
+  \begin{enumerate}
+
+    \item \label{algo:attr_insertion:1} create an empty row in the
+      attribute table whose entry is element \(\varepsilon\);
+
+    \item \label{algo:attr_insertion:2} initialise the first cell
+      \(I(\varepsilon)\) with the index resulting of the addition of
+      the same element in the \(\tau\)-table: \(I(\varepsilon)
+      \leftarrow m+1\);
+
+    \item \label{algo:attr_insertion:3} initialise the \(\omega\)-sets
+      of \(\varepsilon\) with \(\varnothing\): \(\forall j \in \llbracket 1, n
+      \rrbracket.\overline{\omega}|_j(\varepsilon) \leftarrow \varnothing\).
+  
+  \end{enumerate}
+
+  \item \label{algo:tree_insertion} Insert the element in the \XML
+    tree (this modifies only the rightmost branch because of the
+    stream order, see figure~\ref{rightmost_branches}).
+
+  \item \label{algo:border_expansion} If the insertion results in the
+    creation of a new branch (instead of growing the previous branch),
+    perform a \emph{rightmost expansion} (see
+    figure~\ref{rightmost_branches} and further formal definition);
+
+  \item \label{algo:tau_expansion} Perform the expansion of the
+    newly added tuple (or \emph{\(\tau\)-expansion}) in the
+    \(\tau\)-table (see further definition): this results in a set of
+    new tuples. If one of these tuples is a solution, then stop else
+    input another element from the stream.
+
+\end{enumerate}
+
+Let us now define the operations we just mentioned, following the
+order in which they are applied.
+
+
+\subsection{Insertion in the \(\tau\)-table}
+\label{tau_insertion}
+
+Let us illustrate first the step~(\ref{algo:tau_insertion}) of the
+algorithm on an example. Consider the \(\tau\)-table just before the
+insertion of node \(b_4\):
+\[
+\begin{array}{|c||ccc|ccc|}
+\hhline{~------}
+  \multicolumn{1}{c||}{} 
+& \overline{\tau}|_a & \overline{\tau}|_b & \overline{\tau}|_c 
+& \overline{\omega}|_a & \overline{\omega}|_b &
+  \overline{\omega}|_c\\
+\hhline{=::======}
+1 & \Omega & \Omega & c_1    & \{1\} & \{1\} & \varnothing\\
+\hhline{-||------}
+2 & a_1    & \Omega & \Omega & \varnothing & \{2\} & \{2\}\\
+\hhline{-||------}
+3 & \Omega & b_1    & \Omega & \{3\} & \varnothing & \{3\}\\
+\hhline{-||------}
+4 & a_2    & \Omega & \Omega & \varnothing & \{4\} & \{4\}\\
+\hhline{-||------}
+\end{array}
+\]
+The following rows illustrate the steps~(\ref{algo:tau_insertion:1}),
+(\ref{algo:tau_insertion:2}) and (\ref{algo:tau_insertion:3}):
+\[
+\begin{array}{|c||ccc|ccc|}
+\hhline{-||------}
+5 & \phantom{a_1} & \phantom{b_1} & \phantom{c_1} 
+& \phantom{\{1\}} & \phantom{\{2\}} & \phantom{\{4\}}\\
+\hhline{-||------}
+\multicolumn{7}{c}{}\\
+\hhline{-||------}
+5 & \Omega & b_4 & \Omega & \phantom{\{1\}} & \phantom{\{2\}} &
+\phantom{\{4\}}\\
+\hhline{-||------}
+\multicolumn{7}{c}{}\\
+\hhline{-||------}
+5 & \Omega & b_4 & \Omega & \{5\} & \varnothing & \{5\}\\
+\hhline{-||------}
+\end{array}
+\]
+
+
+\subsection{Insertion in the attribute table}
+\label{attr_insertion}
+
+Let us first illustrate on an example the
+step~(\ref{algo:attr_insertion}) of the algorithm. Here is the
+attribute table before addition of node \(b_4\):
+\[
+\begin{array}{|c||c|ccc|}
+\hhline{~----}
+  \multicolumn{1}{c||}{}
+& I & \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c\\
+\hhline{=::====}
+c_1 & 1 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+a_1 & 2 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+b_1 & 3 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+a_2 & 4 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+\end{array}
+\]
+Steps~(\ref{algo:attr_insertion:1}), (\ref{algo:attr_insertion:2}) and 
+(\ref{algo:attr_insertion:3}) are straightforward:
+\[
+\begin{array}{|c||c|ccc|}
+\hhline{-||----}
+b_4 & \phantom{5} & \phantom{\omega|_a} & \phantom{\omega|_b} &
+\phantom{\omega|_c}\\
+\hhline{-||----}
+\multicolumn{5}{c}{}\\
+\hhline{-||----}
+b_4 & 5 & \phantom{\omega|_a} & \phantom{\omega|_b} & \phantom{\omega|_c}\\
+\hhline{-||----}
+\multicolumn{5}{c}{}\\
+\hhline{-||----}
+b_4 & 5 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+\end{array}
+\]
+The cell \(I(b_4)\) is set to \(5\) because \(5\) is the entry
+\textbf{in the \(\tau\)-table} corresponding to the insertion of
+\(b_4\) (see corresponding \(\tau\)-table at
+section~\ref{tau_insertion}).
+
+
+\subsection{Insertion in the XML tree}
+\label{xml_insertion}
+
+This operation corresponds to the step~(\ref{algo:tree_insertion}) of
+the algorithm. Let us specify it with the help of a rewrite
+system~\cite{HTCS:1990}. Let us note \proc{empty} the empty \XML tree
+and \(\proc{node}(\varepsilon, f)\) the non\hyp{}empty tree whose root
+is the element \(\varepsilon\) and sub\hyp{}trees are the forest
+\(l\). A forest is a list of trees, \emph{where the first tree is the
+  rightmost tree for the ordering of roots}. The empty list is noted
+\(\el\) and the non-empty list whose head is \(x\) and tail \(l\) is
+noted \(\cons{x}{l}\), as in \Prolog. Because the children of a node
+constitute a forest, i.e., a list of subtrees, we need a function
+\proc{add} such that
+\begin{itemize}
+ 
+  \item \(\proc{add}(\varepsilon, t)\) is the \XML tree resulting from
+    the insertion of element \(\varepsilon\) into the \XML tree \(t\);
+
+  \item \(\proc{add}(\varepsilon, f)\) is the \XML forest resulting
+    from the insertion of element \(\varepsilon\) into the \XML forest
+    \(f\).
+
+\end{itemize}
+The corresponding \emph{ordered} rewrite system is
+\begin{align*}
+  \proc{add}(\varepsilon, \proc{node}(r, f))
+& \xrightarrow{1} \proc{node}(r, \proc{add}(\varepsilon, f))\\
+  \proc{add}(\varepsilon, \cons{\proc{node}(r_1, f_1)}{f_2})
+& \xrightarrow{2}
+  \cons{\proc{node}(r_1, \proc{add}(\varepsilon, f_1))}{f_2}
+& \text{if} \, \varepsilon \sqsubset r_1\\
+  \proc{add}(\varepsilon, x)
+& \xrightarrow{3}
+  \cons{\proc{node}(\varepsilon, \el)}{x}
+\end{align*}
+Rule (\(\xrightarrow{1}\)) adds an element \(\varepsilon\) to the
+current, non\hyp{}empty, \XML tree \(\proc{node}(r, f)\). Rule
+(\(\xrightarrow{2}\)) handles the recursive descent along the
+rightmost branch, as long as the element to add is contained in the
+rightmost tree. In rule (\(\xrightarrow{3}\)), variable \(x\) can
+match \proc{empty}, when the first element is added, or an empty
+forest, when performing an extension, or a non\hyp{}empty forest when
+making an expansion. This system is correct if and only if the stream
+was generated from a single \XML tree and if the elements are streamed
+out in increasing order. As shown in figure~\ref{rightmost_branches},
+the addition of a node either extends linearly the current rightmost
+branch (\emph{extension}) or creates a new branch
+(\emph{expansion}). Let us consider the latter case. For example,
+figure~\ref{before_after_b4} shows the \XML trees before and after the
+addition of node \(b_4\). The dotted edges mark the branch of the
+previous rightmost branch that is no more part of the new rightmost
+branch (in thick solid edges). The node in the rightmost branch from
+which a new branch is attached is called the \emph{knot}. Here, the
+knot is \(a_1\).
+\begin{figure}[h]
+\centering
+\includegraphics[bb=71 653 174 721]{rightmost_branch_change}
+\caption{Rightmost branch before and after inserting \(b_4\)}
+\label{before_after_b4}
+\end{figure}
+
+
+\subsection{Rightmost expansion}
+
+Let us define now the operation of \emph{rightmost expansion}, or
+simply \emph{expansion}, since we only deal here with the rightmost
+branch. The expansion of the rightmost branch occurs when a diverging
+branch is created by the addition of a node. This operation consists
+in the following ordered steps.
+
+For each node \(\varepsilon\) from the end of the previous rightmost
+branch to the knot \emph{excluded} (i.e., graphically, following the
+dotted edges, bottom\hyp{}up, in the \XML tree),
+\begin{enumerate}
+   
+  \item \label{border_expansion:1} add to the \(\omega\)-sets of the
+  node the corresponding \(\omega\)-sets in the \(\tau\)-table found
+  at the entry given by the first cell (in the attribute table):
+  \[
+    \forall j \in \llbracket 1, n
+    \rrbracket.\overline{\omega}|_j(\varepsilon) \leftarrow
+    \overline{\omega}|_j(\varepsilon) \, \cup \,
+    \overline{\omega}|_j(I(\varepsilon))
+  \] 
+
+  \item \label{border_expansion:2} add all the newly updated
+    \(\omega\)-sets of the node to their corresponding \(\omega\)-sets
+    in the parent node; if \(\varepsilon'\) is the parent of
+    \(\varepsilon\) then
+  \[
+    \forall j \in \llbracket 1, n
+    \rrbracket.\overline{\omega}|_j(\varepsilon') \leftarrow
+    \overline{\omega}|_j(\varepsilon') \, \cup \,
+    \overline{\omega}|_j(\varepsilon)
+  \]
+
+\end{enumerate}
+
+\noindent
+For example, here is the \XML tree, the attribute table and the
+\(\tau\)-table just after the insertion of node \(b_4\):
+\[
+\begin{array}{cc|c||c|@{\;}c@{\;}c@{\;}c@{\;}|c|c||ccc|@{\,}c@{\,}c@{\,}c@{\,}|}
+  \text{\XML tree} 
+& \multicolumn{2}{c}{} 
+& \multicolumn{4}{c}{\text{Attributes}}
+& \multicolumn{2}{c}{}
+& \multicolumn{6}{c}{\tau\text{-table}}\\
+\hhline{-~~----~~------}
+\multirow{6}{*}{
+\includegraphics[bb=71 653 111 721]{just_after_b4}
+}
+& \multicolumn{2}{c||}{} 
+& I & \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c
+& \multicolumn{2}{c||}{} 
+& \overline{\tau}|_a & \overline{\tau}|_b & \overline{\tau}|_c 
+& \overline{\omega}|_a & \overline{\omega}|_b &
+\overline{\omega}|_c\\
+\hhline{~~=::====:~=::======}
+&& c_1 & 1 & \varnothing & \varnothing & \varnothing & & 
+1 & \Omega & \Omega & c_1 & \{1\} & \{1\} & \varnothing\\
+\hhline{~~-||----~-||------}
+&& a_1 & 2 & \varnothing & \varnothing & \varnothing & & 
+2 & a_1 & \Omega & \Omega & \varnothing & \{2\} & \{2\}\\
+\hhline{~~-||----~-||------}
+&& b_1 & 3 & \varnothing & \varnothing & \varnothing & & 
+3 & \Omega & b_1 & \Omega & \{3\} & \varnothing & \{3\}\\
+\hhline{~~-||----~-||------}
+&& a_2 & 4 & \varnothing & \varnothing & \varnothing & & 
+4 & a_2 & \Omega & \Omega & \varnothing & \{4\} & \{4\}\\
+\hhline{~~-||----~-||------}
+&& b_4 & 5 & \varnothing & \varnothing & \varnothing & & 
+5 & \Omega & b_4 & \Omega & \{5\} & \varnothing & \{5\}\\
+\hhline{~~-||----~-||------}
+\end{array}
+\]
+We find that a new branch is created, whose knot is
+\(a_1\). Therefore, we must proceed to a rightmost expansion. The
+branch which is not part anymore of the rightmost branch is the path
+(\(a_1\), \(b_1\), \(a_2\)). We consider in turn \(a_2\) and \(b_1\)
+(i.e., bottom\hyp{}up), but not \(a_1\) because it is the knot (and,
+as such, still belongs to the rightmost branch). First, \(a_2\) is not
+the knot and its kind is \(a\), so we apply
+step~(\ref{border_expansion:1}):
+\[
+\left\{
+\begin{aligned}
+\overline{\omega}|_a(a_2) & \leftarrow \overline{\omega}|_a(a_2) 
+\, \cup \, \overline{\omega}|_a(I(a_2))\\
+\overline{\omega}|_b(a_2) & \leftarrow \overline{\omega}|_b(a_2) 
+\, \cup \, \overline{\omega}|_b(I(a_2))\\
+\overline{\omega}|_c(a_2) & \leftarrow \overline{\omega}|_c(a_2) 
+\, \cup \, \overline{\omega}|_c(I(a_2))
+\end{aligned}
+\right.
+\Longleftrightarrow
+\left\{
+\begin{aligned}
+\overline{\omega}|_a(a_2) & \leftarrow \varnothing\\
+\overline{\omega}|_b(a_2) & \leftarrow \{4\}\\
+\overline{\omega}|_c(a_2) & \leftarrow \{4\}
+\end{aligned}
+\right.
+\]
+Next, we apply step~(\ref{border_expansion:2}), i.e., we add (by set
+union) each \(\omega\)-set of \(a_2\) to its corresponding
+\(\omega\)-set of the parent node (in the old rightmost branch), i.e.,
+\(b_1\):
+\[
+\left\{
+\begin{aligned}
+\overline{\omega}|_a(b_1) & \leftarrow \overline{\omega}|_a(b_1) 
+\, \cup \, \overline{\omega}|_a(a_2)\\
+\overline{\omega}|_b(b_1) & \leftarrow \overline{\omega}|_b(b_1) 
+\, \cup \, \overline{\omega}|_b(a_2)\\
+\overline{\omega}|_c(b_1) & \leftarrow \overline{\omega}|_c(b_1) 
+\, \cup \, \overline{\omega}|_c(a_2)
+\end{aligned}
+\right.
+\Longleftrightarrow
+\left\{
+\begin{aligned}
+\overline{\omega}|_a(b_1) & \leftarrow \varnothing\\
+\overline{\omega}|_b(b_1) & \leftarrow \{4\}\\
+\overline{\omega}|_b(b_1) & \leftarrow \{4\}
+\end{aligned}
+\right.
+\]
+Thus the attribute table is now (changes in bold):
+\[
+\begin{array}{|c||c|c@{\,}c@{\,}c|}
+\hhline{~----}
+\multicolumn{1}{c||}{} 
+& I  & \overline{\omega}|_a & \overline{\omega}|_b &
+  \overline{\omega}|_c\\
+\hhline{=::====}
+c_1 & 1 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+a_1 & 2 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+b_1 & 3 & \varnothing & \mathbf{\{4\}} & \mathbf{\{4\}}\\
+\hhline{-||----}
+a_2 & 4 & \varnothing & \mathbf{\{4\}} & \mathbf{\{4\}}\\
+\hhline{-||----}
+b_4 & 5 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+\end{array}
+\]
+Now, we consider node \(b_1\). It is not the knot, so we proceed with
+expansion step~(\ref{border_expansion:1}): we add the \(\omega\)-sets
+of entry \(3\) \textbf{in the \(\tau\)-table} to the \(\omega\)-sets
+of \(b_1\):
+\[
+\left\{
+\begin{aligned}
+\overline{\omega}|_a(b_1) & \leftarrow \overline{\omega}|_a(b_1) 
+\, \cup \, \overline{\omega}|_a(I(b_1))\\
+\overline{\omega}|_b(b_1) & \leftarrow \overline{\omega}|_b(b_1) 
+\, \cup \, \overline{\omega}|_b(I(b_1))\\
+\overline{\omega}|_c(b_1) & \leftarrow \overline{\omega}|_c(b_1) 
+\, \cup \, \overline{\omega}|_c(I(b_1))
+\end{aligned}
+\right.
+\Longleftrightarrow
+\left\{
+\begin{aligned}
+\overline{\omega}|_a(b_1) & \leftarrow \varnothing \cup \{3\}\\
+\overline{\omega}|_b(b_1) & \leftarrow \{4\} \cup \varnothing\\
+\overline{\omega}|_c(b_1) & \leftarrow \{4\} \cup \{3\}
+\end{aligned}
+\right.
+\]
+The attribute table is now (changes in bold)
+\[
+\begin{array}{|c||c|c@{\,}c@{\,}c|}
+\hhline{~----}
+\multicolumn{1}{c||}{} 
+& I  & \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c\\
+\hhline{=::====}
+c_1 & 1 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+a_1 & 2 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+b_1 & 3 & \mathbf{\{3\}} & \{4\} & \{4, \mathbf{3}\}\\
+\hhline{-||----}
+a_2 & 4 & \varnothing & \{4\} & \{4\}\\
+\hhline{-||----}
+b_4 & 5 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+\end{array}
+\]
+Next, we apply expansion step~(\ref{border_expansion:2}), i.e., we
+add the new \(\omega\)-sets of \(b_1\) to the corresponding sets of
+node \(a_1\):
+\[
+\begin{array}{|c||c|c@{\,}c@{\,}c|}
+\hhline{~----}
+\multicolumn{1}{c||}{} 
+& I  & \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c\\
+\hhline{=::====}
+c_1 & 1 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+a_1 & 2 & \mathbf{\{3\}} & \mathbf{\{4\}} & \mathbf{\{4, 3\}}\\
+\hhline{-||----}
+b_1 & 3 & \{3\} & \{4\} & \{4, 3\}\\
+\hhline{-||----}
+a_2 & 4 & \varnothing & \{4\} & \{4\}\\
+\hhline{-||----}
+b_4 & 5 & \varnothing & \varnothing & \varnothing\\
+\hhline{-||----}
+\end{array}
+\]
+
+\subsection{\(\tau\)-expansion}
+\label{tau_expansion}
+
+\subsection{Relative \(\omega\)-unification}
+
+Before we give the definition of the \(\tau\)-expansion used in the
+step~(\ref{algo:tau_expansion}) of the algorithm, we need to define
+another kind of unification, called \emph{relative
+  \(\omega\)-unification}, on \(\omega\)-sets (as found in the
+\(\tau\)-table). Let \(\omega_1\) and \(\omega_2\) be two
+\(\omega\)-sets and \(i\) an index. Their unification relatively to
+\(i\), noted \(\omega_1 \otimes_i \omega_2\), is another
+\(\omega\)-set such that
+\[
+\left\{
+\begin{aligned}
+\varnothing \otimes_i \omega &= \varnothing\\
+\omega \otimes_i \varnothing &= \varnothing\\
+\omega_1 \otimes_i \omega_2  &= \{i\} & \text{if} \, \omega_1 \neq
+\varnothing \, \text{and} \, \omega_2 \neq \varnothing
+\end{aligned}
+\right.
+\]
+We extend the \(\omega\)-unification to tuples of \(\omega\)-sets as
+follows. Let \(\overline{\omega}_1\) and \(\overline{\omega}_2\) be
+two \(n\)-tuples or \(\omega\)-sets over the same kinds, then their
+unification relatively to an index \(i\) is another \(n\)-tuple of
+\(\omega\)-sets such that
+\[
+\overline{\omega}_1 \otimes_i \overline{\omega}_2 =
+(\overline{\omega}_1|_1 \otimes_i \overline{\omega}_2|_1, 
+ \overline{\omega}_1|_2 \otimes_i \overline{\omega}_2|_2, \dots,
+ \overline{\omega}_1|_n \otimes_i \overline{\omega}_2|_n)
+\]
+
+
+\subsection{Union of \(n\)-tuples of \(\omega\)-sets}
+
+We also need to extend the set union (on \(\omega\)-sets) to
+\(n\)-tuples of \(\omega\)-sets. Let \(\overline{\omega}_1\) and
+\(\overline{\omega}_2\) be two \(n\)-tuples of \(\omega\)-sets, then
+the union of \(\overline{\omega}_1\) and \(\overline{\omega}_2\),
+noted \(\overline{\omega}_1 \sqcup \overline{\omega}_2\), is an
+\(n\)-tuple of \(\omega\)-sets such that each component is the union
+the corresponding components in \(\overline{\omega}_1\) and
+\(\overline{\omega}_2\). Formally: \(\overline{\omega}_1 \sqcup
+\overline{\omega}_2 = (\overline{\omega}_1|_1 \cup
+\overline{\omega}_2|_1, \overline{\omega}_1|_2 \cup
+\overline{\omega}_2|_2, \dots, \overline{\omega}_1|_n \cup
+\overline{\omega}_2|_n)\).
+
+
+\subsection{\(\tau\)-expansion}
+
+The the last entry in the \(\tau\)-table is \(I(\varepsilon)\) since
+we assume here that the last inserted element is
+\(\varepsilon\). Recall that the totally ordered set of kinds is
+\({\cal K} = \{\kappa_1, \kappa_2, \dots, \kappa_n\}\), and that
+\(K(\varepsilon)\) is the kind of the element \(\varepsilon\). The
+\(\tau\)-expansion consists in the following steps.
+\begin{enumerate}
+
+  \item \(k \leftarrow I(\varepsilon)\)
+
+  \item For each parent \(\varepsilon'\) of the newly added node
+    \(\varepsilon\) (at the end of the rightmost branch) until the
+    root \emph{included}, do
+  \begin{enumerate}
+
+    \item \label{tau_expansion:1} Unify the tuple of the newly added
+      node, \(I(\varepsilon)\), with the tuples of its parent
+      \(I(\varepsilon')\) as given by the \(\omega\)-set of the same
+      kind as \(\varepsilon\) in the \(\tau\)-table; then unify the
+      \(\omega\)-sets of \(I(\varepsilon)\) with the \(\omega\)-sets
+      of the tuples in question, relatively to new indexes \(k\) (one
+      \(k\) for each element of the \(\omega\)-set of kind
+      \(K(\varepsilon)\) of entry \(I(\varepsilon')\)). Formally, for
+      all \(i \in
+      \overline{\omega}|_{K(\varepsilon)}(I(\varepsilon'))\),
+    \begin{align*}
+      k &\leftarrow k + 1\\
+      \overline{\tau}(k) &\leftarrow \overline{\tau}(I(\varepsilon)) \otimes
+      \overline{\tau}(i)\\
+      \overline{\omega}(k) &\leftarrow \overline{\omega}(I(\varepsilon))
+      \otimes_k \overline{\omega}(i)
+    \end{align*}
+    If no component of \(\overline{\tau}(k)\) is \(\Omega\), then
+    \(\overline{\tau}(k)\) is a solution, thus stop.
+
+    \item \label{tau_expansion:2} Merge all the \(\omega\)-tuples of
+      entries \(I(\varepsilon)+1\) to \(k\) in the \(\tau\)-table and merge
+      them to the \(\omega\)-tuple of entry \(I(\varepsilon)\):
+      \[
+        \overline{\omega}(I(\varepsilon)) \leftarrow
+        \bigsqcup_{p=I(\varepsilon)}^{k}{\overline{\omega}(p)}
+      \]
+
+  \end{enumerate}
+
+\end{enumerate}
+Let us recall the attribute table after the rightmost expansion due to
+the insertion of node \(b_4\) and the \(\tau\)-table at the same
+moment:
+\[
+\begin{array}{cc|c||c|@{\,}c@{\,}@{\,}c@{\,}@{\,}c@{\,}|c|c||c@{\,}c@{\,}c|@{\,}c@{\,}c@{\,}c@{\,}|}
+  \text{\XML tree} 
+& \multicolumn{2}{c}{} 
+& \multicolumn{4}{c}{\text{Node attributes}} 
+& \multicolumn{2}{c}{}
+& \multicolumn{6}{c}{\tau\text{-table}}\\
+\hhline{-~~----~~------}
+\multirow{6}{*}{
+\includegraphics[bb=71 653 111 721]{just_after_b4}
+}
+& \multicolumn{2}{c||}{} 
+& I 
+& \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c
+& \multicolumn{2}{c||}{} 
+& \overline{\tau}|_a & \overline{\tau}|_b & \overline{\tau}|_c 
+& \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c\\
+\hhline{~~=::====:~=::======}
+&& c_1 & 1 & \varnothing & \varnothing & \varnothing & & 
+1 & \Omega & \Omega & c_1 & \{1\} & \{1\} & \varnothing\\
+\hhline{~~-||----~-||------}
+&& a_1 & 2 & \{3\} & \{4\} & \{4, 3\} & & 
+2 & a_1 & \Omega & \Omega & \varnothing & \{2\} & \{2\}\\
+\hhline{~~-||----~-||------}
+&& b_1 & 3 & \{3\} & \{4\} & \{4, 3\} & & 
+3 & \Omega & b_1 & \Omega & \{3\} & \varnothing & \{3\}\\
+\hhline{~~-||----~-||------}
+&& a_2 & 4 & \varnothing & \{4\} & \{4\} & & 
+4 & a_2 & \Omega & \Omega & \varnothing & \{4\} & \{4\}\\
+\hhline{~~-||----~-||------}
+&& b_4 & 5 & \varnothing & \varnothing & \varnothing & & 
+5 & \Omega & b_4 & \Omega & \{5\} & \varnothing & \{5\}\\
+\hhline{~~-||----~-||------}
+\end{array}
+\]
+In our example, the \(\tau\)-expansion starts by considering the
+parent node of \(\varepsilon = b_4\) in the \XML tree, which is \(a_1\). We
+hence have \(K(\varepsilon) = K(b_4) = b\), \(I(a_1) = 2\), \(I(\varepsilon) = I(b_4)
+= 5\) and \(\overline{\omega}|_{K(\varepsilon)}(I(\varepsilon')) =
+\overline{\omega}|_b(2) = \{2\}\). Step~(\ref{tau_expansion:1})
+consists in doing, for \(i = 2\)
+\[
+\left\{
+\begin{aligned}
+  k &\leftarrow 6\\
+  \overline{\tau}(6) & \leftarrow \overline{\tau}(5) \otimes
+  \overline{\tau}(2)\\
+  \overline{\omega}(6) &\leftarrow \overline{\omega}(5) \otimes_{6}
+  \overline{\omega}(2) 
+\end{aligned}
+\right.
+\Longleftrightarrow
+\left\{
+\begin{aligned}
+  k &\leftarrow 6\\
+  \overline{\tau}(6) & \leftarrow  (\Omega, b_4, \Omega) \otimes (a_1,
+  \Omega, \Omega)\\
+  \overline{\omega}(6) &\leftarrow (\{5\}, \varnothing, \{5\})
+  \otimes_6 (\varnothing, \{2\}, \{2\})
+\end{aligned}
+\right.
+\]
+\[
+\Longleftrightarrow
+\left\{
+\begin{aligned}
+  k &\leftarrow 6\\
+  \overline{\tau}(6) & \leftarrow  (a_1, b_4, \Omega)\\
+  \overline{\omega}(6) &\leftarrow (\varnothing, \varnothing, \{6\})
+\end{aligned}
+\right.
+\]
+We hence have \(\overline{\tau}|_c(6) = \Omega\), so
+\(\overline{\tau}(6)\) is not a solution. The \(\tau\)-table now is
+\[
+\begin{array}{|c||ccc|@{\,}c@{\,}c@{\,}c@{\,}|}
+\hhline{~------}
+  \multicolumn{1}{c||}{} 
+& \tau|_a & \tau|_b & \tau|_c 
+& \omega|_a & \omega|_b & \omega|_c\\
+\hhline{=::======}
+1 & \Omega & \Omega & c_1 & \{1\} & \{1\} & \varnothing\\
+\hhline{-||------}
+2 & a_1 & \Omega & \Omega & \varnothing & \{2\} & \{2\}\\
+\hhline{-||------}
+3 & \Omega & b_1 & \Omega & \{3\} & \varnothing & \{3\}\\
+\hhline{-||------}
+4 & a_2 & \Omega & \Omega & \varnothing & \{4\} & \{4\}\\
+\hhline{-||------}
+5 & \Omega & b_4 & \Omega & \{5\} & \varnothing & \{5\}\\
+\mathbf{6} & \mathbf{a_1} & \mathbf{b_4} & \mathbf{\Omega} &
+\pmb{\varnothing} & \pmb{\varnothing} & \mathbf{\{6\}}\\
+\hhline{-||------}
+\end{array}
+\]
+Note that we do not draw a line between the rows \(5\) and \(6\). The
+reason is that the new row \(6\) has been produced by the
+\(\tau\)-expansion of row \(5\). Now, let us apply
+step~(\ref{tau_expansion:2}) and merge upward the \(\omega\)-sets of
+the new entries (here entry \(6\)) with the 
+\(\omega\)-sets of \(I(\varepsilon)\):
+\begin{align*}
+\overline{\omega}(5) \leftarrow
+\bigsqcup_{p=5}^{6}{\overline{\omega}(p)}
+& \Longleftrightarrow 
+\overline{\omega}(5) \leftarrow
+\overline{\omega}(5) \, \sqcup \, \overline{\omega}(6)\\
+& \Longleftrightarrow
+\overline{\omega}(5) \leftarrow
+(\{5\}, \varnothing, \{5\}) 
+\, \sqcup \, (\varnothing, \varnothing, \{6\})\\
+& \Longleftrightarrow
+\overline{\omega}(5) \leftarrow (\{5\}, \varnothing, \{5,6\})
+\end{align*}
+Finally, the \(\tau\)-table after insertion of \(b_4\) is (changes in
+bold)
+\[
+\begin{array}{|c||ccc|@{\,}c@{\,}c@{\,}c@{\,}|}
+\hhline{~------}
+  \multicolumn{1}{c||}{}
+& \tau|_a & \tau|_b & \tau|_c
+& \omega|_a & \omega|_b & \omega|_c\\
+\hhline{=::======}
+1 & \Omega & \Omega & c_1 & \{1\} & \{1\} & \varnothing\\
+\hhline{-||------}
+2 & a_1 & \Omega & \Omega & \varnothing & \{2\} & \{2\}\\
+\hhline{-||------}
+3 & \Omega & b_1 & \Omega & \{3\} & \varnothing & \{3\}\\
+\hhline{-||------}
+4 & a_2 & \Omega & \Omega & \varnothing & \{4\} & \{4\}\\
+\hhline{-||------}
+5 & \Omega & b_4 & \Omega & \{5\} & \varnothing & \{5,\mathbf{6}\}\\
+6 & a_1 & b_4 & \Omega & \varnothing & \varnothing & \{6\}\\
+\hhline{-||------}
+\end{array}
+\]
+
+
+\subsection{Completing the example}
+
+Let us complete our continued example as suspended in
+section~\ref{tau_expansion} and input elements in the remaining
+stream [\(c_2\), \(a_3\), \(a_4\), \(b_2\), \(c_3\), \(b_3\)] until a
+solution triple appears. Let us insert first \(c_2\) in the \XML
+tree. The situation is
+\[
+\begin{array}{cc|c||c|@{\,}c@{\,}@{\,}c@{\,}@{\,}c@{\,}|c|c||c@{\,}c@{\,}c|@{\,}c@{\,}c@{\,}c@{\,}|}
+  \text{\XML tree} 
+& \multicolumn{2}{c}{} 
+& \multicolumn{4}{c}{\text{Node attributes}} 
+& \multicolumn{2}{c}{}
+& \multicolumn{6}{c}{\tau\text{-table}}\\
+\hhline{-~~----~~------}
+\multirow{6}{*}{ 
+\includegraphics[bb=71 653 121 721]{just_after_c2}
+}
+& \multicolumn{2}{c||}{} 
+& I 
+& \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c
+& \multicolumn{2}{c||}{} 
+& \overline{\tau}|_a & \overline{\tau}|_b & \overline{\tau}|_c 
+& \overline{\omega}|_a & \overline{\omega}|_b & \overline{\omega}|_c\\
+\hhline{~~=::====:~=::======}
+&& c_1 & 1 & \varnothing & \varnothing & \varnothing & & 
+1 & \Omega & \Omega & c_1 & \{1\} & \{1\} & \varnothing\\
+\hhline{~~-||----~-||------}
+&& a_1 & 2 & \{3\} & \{4\} & \{4, 3\} & & 
+2 & a_1 & \Omega & \Omega & \varnothing & \{2\} & \{2\}\\
+\hhline{~~-||----~-||------}
+&& b_1 & 3 & \{3\} & \{4\} & \{4, 3\} & & 
+3 & \Omega & b_1 & \Omega & \{3\} & \varnothing & \{3\}\\
+\hhline{~~-||----~-||------}
+&& a_2 & 4 & \varnothing & \{4\} & \{4\} & & 
+4 & a_2 & \Omega & \Omega & \varnothing & \{4\} & \{4\}\\
+\hhline{~~-||----~-||------}
+&& b_4 & 5 & \varnothing & \varnothing & \varnothing & & 
+5 & \Omega & b_4 & \Omega & \{5\} & \varnothing & \{5,6\}\\
+\hhline{~~-||----~~~~~~~~}
+&
+\multicolumn{6}{c}{} && 
+6 & a_1 & b_4 & \Omega & \varnothing & \varnothing & \{6\}\\
+\hhline{~~~~~~~~-||------}
+\end{array}
+\]
+

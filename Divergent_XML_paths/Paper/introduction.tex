@@ -1,0 +1,94 @@
+%%-*-latex-*-
+
+\section{Introduction}
+
+\noindent The \XPath 2.0 expression \texttt{\small a//b|a//c} is
+interpreted as ``\texttt{\small a//b} and \texttt{\small a//c}'', if
+we omit the unique target semantics (\XPath expressions evaluate to a
+a sequence of nodes with
+\begin{wrapfigure}[6]{l}{45pt}
+\centering
+\includegraphics[bb=71 694 100 721]{binary_query}
+\caption{\textsf{\small a//b[//c]}\label{binary_query}}
+\end{wrapfigure}
+same tag, here \texttt{\small b}). Many research
+papers~\cite{Cooper:2001,Li:2001,Zhang:2001} are devoted to match
+efficiently these expressions, considered as tree patterns or queries,
+against \XML trees as a whole or streams of \XML elements, either by
+solving the binary joins and then stitching them back to answer the
+original query~\cite{AlKhalifa:2002,Chien:2002,Jiang:1:2003,Wu:2003}
+or by considering them as a
+whole~\cite{Bruno:2002,Jiang:2:2003,Jiao:2005}.  The standard
+interpretation of the \XPath expressions implies that in the previous
+example, \texttt{\small b} and \texttt{\small c} can be in an
+ancestor/descendant relationship, and the published algorithms indeed
+stick to this interpretation. But it is striking to realise that all
+the authors, to our knowledge, assume in their examples that the nodes
+matched by \texttt{\small b} and \texttt{\small c} are \emph{not} in
+an ancestor or descendant relationship. This let us surmise that this
+tacit assumption in the presentation (not present in the algorithm) is
+often closer to what the query specifier or reader has in mind than
+the usual interpretation. In other words, the reader of an \XPath
+query probably tends to represent in his mind the query as a tree, as
+in the figure~\ref{binary_query}, and to assume that the matching
+subtree is isomorphic to it, instead of reading the query as a set of
+binary joins that, once stitched together, can lead to a degenerate
+case, like a path. In particular, the expression \texttt{\small
+  a//b[//b]} is equivalent to \texttt{\small a//b} and there is no way
+in \XPath to actually denote two different \texttt{\small b} nodes on
+two divergent paths, i.e., no path including the other, as the graphic
+representation seems to suggest. But can we rely solely on this
+psychological assumption to support another interpretation of the
+\XPath expressions? We believe that, beyond the useful purpose of
+avoiding misunderstandings by making more assumptions explicit, it is
+indeed useful to assume sometimes that the matched subtree is
+isomorphic to the query tree because this allows some semantics to be
+included in the query. As an illustration, consider the \MathML trees
+corresponding to the expressions \(\cos(x) + \sin(y)\) and
+\(\cos(\sin(x)) + y\) shown in figure~\ref{mathml}. These trees,
+despite having a structure close enough to be matched by the same
+pattern, have very different mathematical meanings. By interpreting
+the query pattern in a more restrictive way than in \XPath, we can get
+less matches. This amounts to push some semantics into the syntax. For
+example, if we want to match the difference between a possibly nested
+sine application and a possibly nested cosine application, \emph{but
+  not composing them}, we can say that the two nodes \textsf{apply} in
+the query cannot match nodes which are in a descendant or ancestor
+relationship, and then the query only matches the tree in
+sub-figure~\ref{cos_minus_sin}. Furthermore, since we know that the
+subtraction is not commutative when interpreting these formulas, we
+could impose further that the two matched nodes \textsf{apply} must be
+in the \emph{same order} as in the pattern, that is, the relative
+order of these subtrees is the document order, which leads here to no
+match at all.
+\begin{figure}[b]
+\centering
+\subfloat[\(\cos(x) - \sin(y)\)\label{cos_minus_sin}]
+         {\includegraphics[bb=71 632 168 721]{cos_minus_sin}}
+\qquad\qquad
+\subfloat[\(\cos(\sin(x)) - y\)\label{cos_sin_minus}]
+         {\includegraphics[bb=71 632 154 721]{cos_sin_minus}}
+\qquad
+\subfloat[Pattern with variables \(a\) and \(b\).]
+         {\includegraphics[bb=61 632 180 721]{mathml_query}}
+\caption{Two \MathML trees and a query tree}
+\label{mathml}
+\end{figure}
+\noindent We can think of some application domains that could benefit
+from this new interpretation, but real cases are hard to find because
+(\emph{i}) the users, often companies, are reluctant to share their
+databases, (\emph{ii}) too many \XML users still consider \XML mainly
+as a common format for information interchange and not as a
+semi-structured data that can be queried, hence it is far too common
+to see very flat \XML data models even if the original information is
+highly structured (like a molecule)\footnote{Perhaps this situation is
+  also the result of an automated migration from relational
+  databases.}.
+
+The paper is structured as follows. We start with the next
+section~\ref{problem} by stating mode precisely the problem we want to
+solve; then we propose a naive solution in section~\ref{naive};
+follows a stack\hyp{}based algorithm, in section~\ref{stack}, and an
+index\hyp{}based procedure, in section~\ref{table}; this paper being
+concluded in section~\ref{conclusion} with a short comparison of the
+proposed algorithms and plans for future work.

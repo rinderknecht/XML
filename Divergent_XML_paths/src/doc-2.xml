@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <c order="0">
+    <a order="0">
+      <b order="0">
+        <a order="2"/>
+      </b>
+      <b order="2"/>
+      <c order="2">
+        <a order="3"/>
+      </c>
+    </a>
+    <a order="4"/>
+    <b order="3">
+      <c order="3">
+        <b order="4"/>
+      </c>
+    </b>
+  </c>
+</root>

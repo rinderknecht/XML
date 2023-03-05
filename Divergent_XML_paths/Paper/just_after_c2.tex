@@ -1,0 +1,26 @@
+%%-*-latex-*-
+
+\documentclass[11pt]{article}
+
+\usepackage{txfonts}
+\usepackage{pstricks,pst-tree,pst-eps}
+
+\begin{document}
+
+\TeXtoEPS
+  \pstree[nodesep=2pt,levelsep=20pt,treesep=10pt,linewidth=1.5pt]{\TR{\(\mathbf{c_1}\)}}{
+    \pstree[linewidth=0.8pt]{\TR{\(\mathbf{a_1}\)}}{
+      \pstree{\TR{\(b_1\)}}{
+        \TR{\(a_2\)}
+      }
+      \psset{linewidth=0.8pt,linestyle=dotted}
+      \TR{\(b_4\)}
+      \psset{linewidth=1.5pt,linestyle=solid}
+      \TR{\(\mathbf{c_2}\)}
+    }
+    \Tn
+    \Tn
+  }
+\endTeXtoEPS
+
+\end{document}

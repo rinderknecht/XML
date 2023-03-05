@@ -1,0 +1,39 @@
+%%-*-latex-*-
+
+\section{Conclusion}
+\label{conclusion}
+
+As we mentioned in section~\ref{stack}, Al-Khalifa et
+al. \cite{AlKhalifa:2002} used a similar stack data structure to
+compute efficiently structural joins (\emph{stack-tree join
+  algorithm}). The idea of having two kinds of attributes for each
+element in the stack is also found in the same work, where they are
+called \emph{inherit list} and \emph{self list}, as well as the way
+and the moment these data are propagated along the stack. The
+difference lies in the kind of information which is stored in the
+attributes: in Al-Khalifa et al.'s work, it is joined pairs of
+elements, while in ours it is partial matches involving disjointed
+descendants.
+
+The positive aspect of using a stack\hyp{}based algorithm, with
+respect to a table\hyp{}based algorithm, is that the memory
+requirement is lower, since only the current rightmost branch is
+needed. Also, at all times, the attributes contain only the partial
+matches which can be completed in the future. The disadvantage, in
+comparison with the table\hyp{}based algorithm is the completion
+process: there is no clever way to combine only the partial matches
+which can be combined, and not the others. This can be achieved by
+means of the \(\tau\)-table, at the expense of some more memory. A
+sparse table encoding (by means of adjacency lists) would lower the
+memory requirement for the attribute table, so it is theoretically
+hard to decide which algorithm is better. In the same vein, notice
+also that, in the stack\hyp{}based algorithm, the partial matches
+could share some information, in order to reduce the size of the
+attributes. For example, partial matches with the same root, i.e., all
+the partial matches of shape \(\query{\kappa}{\dots}\), with the same
+\(\kappa\), could be grouped in a data structure indexed by
+\(\kappa\). But, still, some general and efficient representation of
+the partial matches has to be devised. Also as a future work,
+implementations ought to be done and a benchmark to be run in order to
+compare to two algorithms.
+

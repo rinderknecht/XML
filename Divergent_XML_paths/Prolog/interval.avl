@@ -1,0 +1,7 @@
+mem((c,1,16), tree((c,1,16), T0/H0), Path), 
+addAVL(nil/0, tree((a,2,11), T2/H2), T1/H1), 
+addAVL(T1/H1, tree((c,12,15), T3/H3), T0/H0),
+addAVL(nil/0, tree((b,3,6),
+                   avl(nil/0, tree((a,4,5), nil/0), nil/0)), T2/H2),
+addAVL(nil/0, tree((c,7,10),
+                   avl(nil/0, tree((a,8,9), nil/0), nil/0)), T3/H3).

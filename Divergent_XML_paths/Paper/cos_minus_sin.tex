@@ -1,0 +1,30 @@
+%%-*-latex-*-
+
+\documentclass[11pt]{article}
+
+%\usepackage{txfonts}
+\usepackage{pstricks,pst-tree,pst-eps}
+
+\newcommand{\mknode}[1]{\TR{\textsf{#1}}}
+
+\begin{document}
+
+\TeXtoEPS
+\pstree[nodesep=2pt,levelsep=20pt,treesep=10pt]{\mknode{apply}}{
+  \mknode{minus}
+  \pstree{\mknode{apply}}{
+    \mknode{cos}
+    \pstree{\mknode{ci}}{
+      \mknode{x}
+    }
+  }
+  \pstree{\mknode{apply}}{
+    \mknode{sin}
+    \pstree{\mknode{ci}}{
+      \mknode{y}
+    }
+  }
+}
+\endTeXtoEPS
+
+\end{document}

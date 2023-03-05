@@ -1,0 +1,17 @@
+%%-*-latex-*-
+
+\documentclass[11pt]{article}
+
+%\usepackage{txfonts}
+\usepackage{pstricks,pst-tree,pst-eps}
+
+\begin{document}
+
+\TeXtoEPS
+\pstree[nodesep=2pt,levelsep=20pt,treesep=10pt,doubleline=true]{\TR{\textsf{a}}}{
+  \TR{\textsf{b}}
+  \TR{\textsf{c}}
+}
+\endTeXtoEPS
+
+\end{document}

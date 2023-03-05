@@ -1,0 +1,5 @@
+addAVL(nil/0, tree((a,3,4),nil/0),T2/H2),
+addAVL(T2/H2, tree((c,6,8), nil/0),T3/H3), 
+addAVL(T3/H3, tree((a,0,1), nil/0),T4/H4),
+addAVL(T4/H4, tree((a,2,3), nil/0),T5/H5).
+

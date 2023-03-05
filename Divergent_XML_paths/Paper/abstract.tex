@@ -1,0 +1,15 @@
+%%-*-latex-*-
+
+\begin{abstract}
+\noindent It is common to query \XML databases using the language
+\XPath embedded in \XQuery and \XSLT. The matching of an \XML document
+against an \XPath expression may result in some target nodes being the
+ancestors of some others, which may not be desirable in some
+contexts. As a special case, when the pattern has the form
+\texttt{\(a\)//\(b_1\)|\(a\)//\(b_2\)|...|\(a\)//\(b_n\)}, this means
+that we want no path from the root to the target nodes \(b_i\) to be
+the prefix of another. We propose different efficient algorithms to
+find the \(b_i\) when the document is either a tree or a stream of
+elements.
+\end{abstract}
+

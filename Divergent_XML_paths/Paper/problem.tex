@@ -1,0 +1,295 @@
+%%-*-latex-*-
+
+\section{Context and problem}
+\label{problem} 
+
+\subsection{Streaming of \XML elements} 
+
+A \emph{tag} is a pair made of a \emph{kind}, noted \(\kappa\), and a
+status ``opening'' or ``closing''. A \emph{element}, noted
+\(\varepsilon\), is a triple made of an opening tag, some contents and
+a closing tag of the same kind as the opening tag. The contents is
+made of a series of plain text and other (embedded) elements. Elements
+can be empty, in which case the contents is empty. By extension, an
+element is said to be of kind \(\kappa\) if its tags are of kind
+\(\kappa\). Let us define the function \(K\) on elements which gives
+the kind of its argument. A set of kinds is noted \(\cal K\). Kinds
+are totally ordered. For example, let us consider the following
+original \XML file where there is only one tag per line and lines are
+numbered. The right column shows the first step in the streaming of
+this file.  
+{\small\begin{verbatim}
+ 1 <c> text1                          <c range="1--22"> text1 </c>
+ 2   <a> text2                        <a range="2--13"> text2 </a>
+ 3     <b> text3                      <b range="3--6"> text3 </b>
+ 4       <a> text4                    <a range="4--5"> text4 </a>
+ 5       </a>              
+ 6     </b>
+ 7     <b> text5                      <b range="7--8"> text5 </b>
+ 8     </b>
+ 9     <c> text6                      <c range="9--12"> text6 </c>
+10       <a> text7                    <a range="10--11"> text7 </a>
+11       </a>
+12     </c>
+13   </a>
+14   <a> text8                        <a range="14--15"> text8 </a>
+15   </a>
+<16   <b> text9                        <b range="16--21"> text9 </b>
+17     <c> text10                     <c range="17--20"> text10 </c>
+18       <b> text11                   <b range="18--19"> text11 </b>
+19       </b>
+20     </c>
+21   </b>
+22 </c>
+\end{verbatim}}
+\noindent Here, the kinds of tag are \(a\), \(b\) and \(c\), i.e.,
+ \({\cal K} = \{a, b, c\}\). Elements are streamed by increasing order
+ of their opening tag line in the \XML file. In order not to lose
+ information, let us record the line numbers of the opening tag and
+ the matching closing tag into an attribute \texttt{range}. This
+ scheme works if we assume one tag per line, but, in general, we do
+ not have a single tag per line, so we cannot take as unique position
+ the line number. In this case, tags must be numbered by order of
+ appearance in the file. Let us assume that there is a function \(T\)
+ which takes an element and returns its textual contents (a series of
+ pieces of text). This allows to abstract away the text in the
+ element.
+
+Let \(L(\varepsilon)\) and \(U(\varepsilon)\) be respectively the
+ lower bound of the range of element \(\varepsilon\) and the upper
+ bound of the range of \(\varepsilon\). By definition, element
+ \(\varepsilon_1\) is said to be \emph{lower} than element
+ \(\varepsilon_2\), noted \(\varepsilon_1 < \varepsilon_2\), if and
+ only if \(L(\varepsilon_1) < L(\varepsilon_2)\). Elements are
+ streamed by increasing lower bounds of their range.
+
+Let us note \(a_n\) the \(n\)-th element of kind \(a\), \(b_n\) then
+ \(n\)-th element of kind \(b\) and \(c_n\) the \(n\)-th element of
+ kind \(c\), as it is usual in the multiple\hyp{}streams
+ view. (Al\hyp{}Khalifa et al. \cite{AlKhalifa:2002} assume that the
+ database provides multiple streams of such sorted elements of the
+ same kind of tag.) With this approach we say that we have here three
+ streams of different kinds: [\(a_1\), \(a_2\), \(\dots\)], [\(b_1\),
+ \(b_2\), \(\dots\)] and [\(c_1\), \(c_2\), \(\dots\)], where \(a_1\),
+ \(b_1\) and \(c_1\) are the first elements of their stream. By
+ interleaving the streams into one stream so that the elements are
+ totally ordered, the previous streams become the unique series
+ [\(c_1\), \(a_1\), \(b_1\), \(a_2\), \(b_4\), \(c_2\), \(a_3\),
+ \(a_4\), \(b_2\), \(c_3\), \(b_3\)]. (We can easily achieve such a
+ stream from multiple streams by picking repeatedly the lowest element
+ among the first elements of the streams.) In this paper, we prefer to
+ assume a unique stream of sorted elements. This is more precise,
+ since it specifies the total ordering of the elements, not just
+ between those of same kind. Nevertheless, for the sake of clarity, we
+ keep the subscripting of tags as in the multiple\hyp{}streams
+ framework. The following left table shows the stream as the
+ interleaving of multiple streams, whilst the right table displays the
+ same stream with a single\hyp{}stream view, i.e., considering a
+ generic series of elements [\(\varepsilon_1\), \(\varepsilon_2\),
+ \(\dots\), \(\varepsilon_{11}\)], with a supplementary column \(K\)
+ for the kind of element.
+\[
+\begin{array}{|c||c|c|c|c|c||c|c|c|c|}
+\hhline{~---~~----}
+\multicolumn{1}{c||}{} & T & L & U &
+\multicolumn{1}{c}{} & \multicolumn{1}{c||}{} & K & T & L & U\\
+\hhline{=::===~=::====}
+c_1 & \texttt{text1}  & 1 & 22 & & \varepsilon_1 & c & \texttt{text1} & 1 & 22\\
+\hhline{-||---~-||----}
+a_1 & \texttt{text2}  & 2 & 13 & & \varepsilon_2 & a & \texttt{text2} & 2 & 13\\
+\hhline{-||---~-||----}
+b_1 & \texttt{text3}  & 3 & 6 & & \varepsilon_3 & b & \texttt{text3} & 3 & 6\\
+\hhline{-||---~-||----}
+a_2 & \texttt{text4}  & 4 & 5 & & \varepsilon_4 & a & \texttt{text4} & 4 & 5\\
+\hhline{-||---~-||----}
+b_4 & \texttt{text5}  & 7 & 8 & & \varepsilon_5 & b & \texttt{text5} & 7 & 8\\
+\hhline{-||---~-||----}
+c_2 & \texttt{text6}  & 9 & 12 & & \varepsilon_6 & c & \texttt{text6} & 9 & 12\\
+\hhline{-||---~-||----}
+a_3 & \texttt{text7}  & 10 & 11 & & \varepsilon_7 & a & \texttt{text7} & 10 & 11\\
+\hhline{-||---~-||----}
+a_4 & \texttt{text8}  & 14 & 15 & & \varepsilon_8 & a & \texttt{text8} & 14 & 15\\
+\hhline{-||---~-||----}
+b_2 & \texttt{text9}  & 16 & 21 & & \varepsilon_9 & b & \texttt{text9} & 16 & 21\\
+\hhline{-||---~-||----}
+c_3 & \texttt{text10} & 17 & 20 & & \varepsilon_{10} & c & \texttt{text10} & 17
+& 20\\
+\hhline{-||---~-||----}
+b_3 & \texttt{text11} & 18 & 19 & & \varepsilon_{11} & b & \texttt{text11} & 18
+& 19\\
+\hhline{-||---~-||----}
+\end{array}
+\]
+
+
+\subsection{Containment and disjointedness} 
+
+Since the stream of elements is computed from a valid \XML file, any
+ two elements in the stream are either in a \emph{containment} or else
+ a \emph{disjointedness} (non\hyp{}overlapping) relationship. By
+ definition, an element \(\varepsilon_1\) is contained in
+ \(\varepsilon_2\) (or ``is a descendant of''), noted \(\varepsilon_1
+ \sqsubset \varepsilon_2\), if \(L(\varepsilon_2) < L(\varepsilon_1)\)
+ and \(U(\varepsilon_1) < U(\varepsilon_2)\). Containment is neither
+ reflexive (it is strict inclusion) nor symmetric, but it is
+ transitive. Elements \(\varepsilon_1\) and \(\varepsilon_2\) are
+ disjoint, noted \(\varepsilon_1 \, \sharp \, \varepsilon_2\), if and
+ only if \(U(\varepsilon_1) < L(\varepsilon_2)\) or \(U(\varepsilon_2)
+ < L(\varepsilon_1)\), i.e., \(\varepsilon_1 \not\sqsubset
+ \varepsilon_2\) and \(\varepsilon_2 \not\sqsubset
+ \varepsilon_1\). Disjointedness is neither reflexive nor transitive,
+ but it is symmetric.
+
+
+\subsection{Problem statement}
+
+Let us note \(\cal E\) the infinite set of all possible \XML elements.
+\begin{wrapfigure}[7]{r}{0pt}
+\fbox{\includegraphics[bb=71 693 149 721]{pattern}}
+\caption{Query \(\query{\kappa_1}{\kappa_2, \dots, \kappa_n}\)}
+\label{pattern}
+\end{wrapfigure}
+ A \emph{pattern}, or \emph{query}, graphically represented in
+ figure~\ref{pattern}, is a tuple of \XML kinds of tag \(\kappa_i\),
+ noted \(\query{\kappa_1}{\kappa_2, \dots, \kappa_n}\). Let \(\cal A\)
+ be the function that returns the arity of a query, i.e., the number
+ of kinds it contains. Let us note \(\Inter{m}{n}\) the integer
+ interval from \(m\) to \(n\). A stream of \XML elements is a series
+ [\(\varepsilon_1\), \(\varepsilon_2\), \(\dots\)], such that
+ \(\forall i,j \in \mathbb{N}.(0 < i < j \Rightarrow \varepsilon_i <
+ \varepsilon_j)\). A \emph{complete match} of a query \(q\), noted
+ \(\mu_q\), is a finite mapping from the indexes of the kinds in \(q =
+ \query{\kappa_1}{\kappa_2, \dots, \kappa_{{\cal A}(q)}}\) to \(\cal
+ E\), i.e., \(\mu_q: \Inter{1}{{\cal A}(q)} \rightarrow {\cal E}\),
+ such that
+\begin{align}
+\forall i \in \Inter{1}{{\cal A}(q)}.& K \circ \mu_q(i) = \kappa_i
+\label{match:tags}\\
+\forall i \in \Inter{2}{{\cal A}(q)}.& \mu_q(i) \sqsubset \mu_q(1)
+\label{match:desc}\\
+\forall i,j \in \Inter{2}{{\cal A}(q)}.& \mu_q(i) \not\sqsubset \mu_q(j)
+\label{match:div}
+\end{align}
+For example, let \(q = \query{a}{b,b}\) and the input stream [\(d_1\),
+ \(a_1\), \(c_1\), \(b_1\), \(c_2\), \(a_2\), \(b_2\)], then there is
+ a match \(\mu_q\) which satisfies \(\mu_q(1) = a_1\), \(\mu_q(2) =
+ b_1\), \(\mu_q(3) = b_2\). Alternatively, we can write instead
+ \(\mu_q = [1 \mapsto a_1, 2 \mapsto b_1, 3 \mapsto b_2]\) (the order
+ of the bindings in the map is not meaningful). This is an
+ \emph{ordered match} because it enjoys the additional condition:
+ \(\forall i,j.(i < j \Rightarrow \mu_q(i) < \mu_q(j))\). Otherwise, a
+ match is said to be \emph{unordered}. For example, \([1 \mapsto a_1,
+ 2 \mapsto b_2, 3 \mapsto b_1]\) is an unordered
+ match. Conditions~\eqref{match:tags} and~\eqref{match:desc} are the
+ standard interpretation of \XPath queries. We add here
+ condition~\eqref{match:div}, which constraints the elements matching
+ the pattern descendants to be pairwise disjoint. Our algorithm
+ takes as input a query and a stream. It reads the elements from the
+ stream one by one and it outputs as soon as possible all the matches
+ from the pattern to the stream read so far. If no match is found
+ after reading an element, the algorithm can be run again on the
+ remaining stream with a data structure that keeps the intermediary
+ results. This way, it is an on\hyp{}line algorithm. This problem is
+ perhaps more intuitively presented as a property of an \XML tree.
+
+\subsection{The \XML trees}
+
+The tree representation of an \XML document is built considering that
+ an element maps to a tree whose root is labeled with a tag and that
+ the directly contained elements map to subtrees ordered according to
+ the order of elements defined above, i.e., siblings are increasingly
+ ordered from left to right. Figure~\ref{xml_tree} is a tree made from
+ the stream [\(d_1\), \(a_1\), \(c_1\), \(b_1\), \(c_2\), \(a_2\),
+ \(b_2\), \(d_2\), \(a_3\), \(b_3\), \(c_3\)]. The order of the
+ elements always corresponds to a \emph{preorder traversal} of the
+ original tree. Also, two nodes are in a containment relationship if
+ and only if they both belong to a rooted path, i.e., a path including
+ the root. Assume the tree in figure~\ref{xml_tree}, and a query
+ \(\query{a}{b,c}\), then the unique ordered match is \([1 \mapsto
+ a_1, 2 \mapsto b_1, 3 \mapsto c_2]\).
+\begin{wrapfigure}[11]{r}{0pt}
+\centering
+\fbox{\includegraphics[bb=71 651 141 721]{xml_tree}}
+\caption{\XML tree with tags \(a\), \(b\), \(c\) and \(d\).}
+\label{xml_tree}
+\end{wrapfigure}
+\noindent We can think of a match as a map from the nodes of the query
+ tree to some nodes of the \XML tree (condition~\eqref{match:tags})
+ such that the descendants in the query tree are mapped to descendants
+ of the mapping of the query root (condition~\eqref{match:desc}) and
+ such that these descendants are located in paths diverging from the
+ mapping of the query root (condition~\eqref{match:div}). Coming back
+ to our example, if we are interested in the unordered matches as
+ well, we must add \([1 \mapsto a_1, 2 \mapsto b_2, 3 \mapsto
+ c_1]\). By contrast, if we interpret the query as in \XPath, i.e.,
+ allowing containment between descendants, we would have to add \([1
+ \mapsto a_1, 2 \mapsto b_1, 3 \mapsto c_1]\), \([1 \mapsto a_1, 2
+ \mapsto b_2, 3 \mapsto c_2]\) and \([1 \mapsto a_3, 2 \mapsto b_3, 3
+ \mapsto c_3]\).
+
+\subsection{Rightmost branches}
+
+The \emph{rightmost branch} of a tree is the longest rooted path made
+ of the successive rightmost children. In the example at
+ figure~\ref{xml_tree}, the rightmost branch is [\(d_1\), \(a_3\),
+ \(b_3\), \(c_3\)]. Adding a new node, i.e., the next available
+ element
+\begin{wrapfigure}[11]{r}{0pt}
+\centering
+\subfloat[Initial]{
+  \fbox{\includegraphics[bb=71 651 104 721]{rightmost_branch}}
+  \label{initial_branch}}
+\quad
+\subfloat[Extension]{
+  \fbox{\includegraphics[bb=71 651 118 721]{rightmost_extension}}
+  \label{extension}}
+\quad
+\subfloat[Expansion]{
+  \fbox{\includegraphics[bb=71 651 122 721]{rightmost_expansion}}
+  \label{expansion}}
+\caption{Rightmost branches (in bold).\label{rightmost_branches}}
+\end{wrapfigure}
+in the input stream, changes only the rightmost branch because the
+elements are ordered by increasing positions of their opening tags
+(preorder traversal). Consider previous stages of our \XML tree in
+figure~\ref{rightmost_branches}: before adding \(a_2\)
+(sub\hyp{}figure \ref{initial_branch}), after adding \(a_2\)
+(sub\hyp{}figure~\ref{extension}) and after adding \(b_2\)
+(sub\hyp{}figure~\ref{expansion}). This sequence illustrates the fact
+that inserting a node either extends the rightmost branch (as adding
+\(a_2\)) or creates a new branch rooted in the previous rightmost
+branch (as adding \(b_2\)). We call the first case a \emph{rightmost
+  extension} and the second is known as \emph{rightmost expansion} of
+a tree in the mining literature (see Asai et al. \cite{Asai:2003}).
+\begin{figure}
+{\footnotesize
+\begin{verbatim}
+let $doc := fn:doc("file:///tmp/doc.xml")
+for $a in $doc//a,
+    $b in $a//b,
+    $c in $a//c except $a//$b//c
+                except $a//c[descendant::b=$b
+                             and descendant::b/@order=$b/@order]
+return <disjoint_elements>
+       {(element {fn:node-name($a)}{$a/@order},
+         element {fn:node-name($b)}{$b/@order},
+         element {fn:node-name($c)}{$c/@order})}
+       </disjoint_elements>
+\end{verbatim}
+}
+\caption{\XQuery encoding of \(\query{a}{b, c}\)}
+\label{problem:xquery}
+\end{figure}
+
+
+\subsection{XQuery}
+
+The kind of query we propose to answer in this article cannot be
+ expressed by the standard semantics of \XPath, but it can be
+ expressed in \XQuery. For example, consider the query \(\query{a}{b,
+ c}\) in figure~\ref{binary_query}. It can be matched against an \XML
+ file named \texttt{\small /tmp/doc.xml} corresponding to the \XML
+ tree of figure~\ref{xml_tree} in the following manner, assuming that
+ the attribute \texttt{\small order} records the subscripts, e.g.,
+ \texttt{\small <a order="3"> ... </a>} stands for \(a_3\). See
+figure~\ref{problem:xquery}.

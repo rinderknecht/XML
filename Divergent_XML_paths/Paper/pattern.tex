@@ -1,0 +1,21 @@
+%%-*-latex-*-
+
+\documentclass[11pt]{article}
+
+%\usepackage{txfonts}
+\usepackage{pstricks,pst-tree,pst-eps}
+
+\begin{document}
+
+\TeXtoEPS
+\pstree[nodesep=4pt,levelsep=20pt,treesep=10pt,doubleline=true]{\TR{\(\kappa_1\)}}{
+  \TR{\(\kappa_2\)}
+  \TR{\(\kappa_3\)}
+  \psset{linestyle=none}
+  \TR{\(\cdots\)} 
+  \psset{linestyle=solid,doubleline=true}
+  \TR{\(\kappa_n\)}
+}
+\endTeXtoEPS
+
+\end{document}

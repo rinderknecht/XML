@@ -1,0 +1,464 @@
+%%-*-latex-*-
+
+\section{A stack-based algorithm}
+\label{stack}
+
+
+\subsection{The rightmost branch as a stack of elements}
+
+Since only the rightmost branch changes throughout insertions, we
+can keep in memory only the rightmost branch, instead of the whole
+\XML tree. The way it changes also allows us to implement it as a
+\emph{stack}. Al-Khalifa et al. \cite{AlKhalifa:2002} used the same
+observation. The bottom of the stack is the root element and the top
+is the last inputted element. If the newly inputted element is
+contained in the rightmost leaf (i.e. it extends the rightmost
+branch), it is pushed onto the stack, otherwise elements are popped
+until the top element contains the new element, which is then pushed
+(this realises the rightmost expansion and saves some memory).
+
+
+\subsection{Attributes of stack elements}
+
+Let us associate some \emph{partial matches} to the elements in the
+stack (i.e. the rightmost branch of the \XML tree), i.e. matches with
+some descendants still unmatched. These partial matches are of two
+kinds. First, the \emph{local attributes} are partial matches made by
+trying to complete the previous partial matches containing no element
+of the stack with the current element. Second, the \emph{synthesised
+  attributes} are the partial matches involving the contained elements
+as well as the current element if it is a possible match for the
+pattern root. In order to illustrate the algorithm, we shall assume a
+query \(\query{a}{b,c}\). A complete match \([1 \mapsto a_1, 2 \mapsto
+  b_1, 3 \mapsto c_2]\) appears as \(\mathbf{a_1b_1c_2}\) for the sake
+of brevity. Element \(d_1\) has no attribute since its kind is not in
+the query. Element \(a_1\) has no local attributes and it has some
+synthesised attributes which are partial matches made of itself and
+its contained elements which are not in the stack, i.e. \(c_1\) and
+\(b_1\). Element \(c_2\) has some local attributes made by combining
+itself with the synthesised attributes of its ancestors in the stack,
+i.e. \(a_1\) and \(d_1\), and it has no synthesised attributes itself
+since it has no contained elements in the stack (yet).
+
+
+\subsection{Stack specification}
+
+Formally, let \proc{Empty} denote any empty stack; \(\proc{Push}
+(\id{x}, \id{S})\) the stack whose top element is \id{x} and remaining
+stack is \id{S}; \(\proc{Pop} (\id{S})\) the pair whose first
+component is the top element of stack \id{S} and the second is the
+remaining stack\footnote{This definition amounts to say that
+  \proc{Pop} is the exact inverse function of \proc{Push}, that is to
+  say \(\id{S'} = \proc{Push} (\id{x}, \id{S}) \Leftrightarrow
+  \proc{Pop}(\id{S'}) = (\id{x}, \id{S})\).} (assuming \(\id{S} \neq
+\proc{Empty}\)). As explained previously, we need a stack whose
+elements are a triple whose first component is an element, the second
+the local attributes and the third the synthesised attributes in order
+to model the rightmost branch of an \XML tree. For example,
+\(\proc{Push} ((d_1, \varnothing, \varnothing),\proc{Empty})\) denotes
+the stack after reading \(d_1\) from the stream (i.e. the first line
+of the table in figure~\ref{stack_after_c2}).
+
+
+\subsection{Insertion}
+
+Let us assume a globally accessible query \(q = \query{\kappa_1}{\kappa_2,
+  \dots, \kappa_{{\cal A}(q)}}\). Let \(\proc{Insert} (\varepsilon,
+\id{S})\) be a pair whose first component is a (possibly empty) series
+of matches and the second component is the stack resulting from the
+insertion of element \(\varepsilon\) into the stack \id{S}. The
+(complete) matches are obtained by reading element \(\varepsilon\)
+from the input stream and combining it with previous partial matches
+(while
+\begin{wrapfigure}[9]{r}{0pt}
+\centering
+\(
+\begin{array}{ccc}
+\toprule
+& \multicolumn{2}{c}{\text{Attributes}}\\
+\cmidrule(l){2-3}
+\text{Element} & \text{Local} & \text{Synthesised}\\
+\toprule
+d_1 & \varnothing & \varnothing\\
+a_1 & \varnothing & a_1c_1, a_1b_1\\
+c_2 & \mathbf{a_1b_1c_2}, a_1c_2 & \varnothing\\
+\bottomrule
+\end{array}
+\)
+\caption{Stack after adding \(c_2\).\label{stack_after_c2}}
+\end{wrapfigure}
+inserting it into the stack \id{S}). They are streamed out by
+increasing roots and, if matching with order, by increasing
+descendants, else the order is undefined (for matches with same
+root). For the sake of brevity, we do not give here the loop that
+implements this process of calling iteratively
+\proc{Insert}\footnote{We use the algorithmic language defined by
+  Cormen et al. in their famous textbook \cite{Cormen:2001}. Moreover,
+  we write with a static single-assignment style for the sake of
+  clarity.}, and instead focus directly on \proc{Insert} itself. For
+example, consider figure~\ref{stack_after_c2}. If \id{S} is the stack
+before adding \(c_2\) and \(({\cal M},\id{S}') = \proc{Insert}(c_2,
+\id{S})\), then \({\cal M} = \{[1 \mapsto a_1, 2 \mapsto b_1, 3
+  \mapsto c_2]\}\) and \(\id{S}'\) is the stack shown in the figure,
+except that, for the sake of clarity we will continue to show the
+matches in the stack in bold \emph{even if they are actually streamed
+  out}. For example, in figures~\ref{stack_before_b2}
+and~\ref{stack_after_b2}, the matches \(\mathbf{a_1b_1c_2}\) and
+\(\mathbf{a_1b_2c_1}\) are shown inside the stack as local attributes.
+\begin{codebox}
+\Procname{\(\proc{Insert} (\varepsilon, \id{S})\)}
+\li	\If \(\id{S} = \proc{Empty}\) \label{insert:li:empty_stack}
+\RComment \(\varepsilon\) is the first element.
+\li	\Then \(\Return \, (\varnothing, \proc{Push} ((\varepsilon, \varnothing,
+                        \varnothing), \id{S}))\)
+          \label{insert:li:not_matches}
+\RComment No match yet.
+	\End
+\li \(((\varepsilon_1, \lambda_1, \sigma_1), \id{S_1}) 
+      \gets \proc{Pop}(\id{S})\) 
+    \label{insert:li:first_pop}
+\RComment Let us destructure one layer of stack \(\id{S}\). 
+\li	\If \(\varepsilon \sqsubset \varepsilon_1\)
+    \label{insert:li:containment_in_top}
+\RComment Does the top of the stack contain \(\varepsilon\)?
+\li	\Then \(({\cal M}, {\cal P}) \gets \proc{Complete} (\varepsilon, \id{S})\)
+    \label{insert:li:complete_stack}
+\RComment New complete and partial matches.
+\li \(\Return \, ({\cal M}, \proc{Push} ((\varepsilon, {\cal P},
+                                          \varnothing), 
+                                         \id{S}))\)
+    \label{insert:li:extension}
+\RComment Matches and rightmost extension.
+    \End
+\li  \(((\varepsilon_2, \lambda_2, \sigma_2), \id{S_2}) 
+       \gets \proc{Pop} (\id{S_1})\)
+     \label{insert:li:second_pop}
+\RComment Destructure one more layer of stack \(\id{S}\).
+\li  \(\Return \, \proc{Insert} (\varepsilon, 
+                                 \proc{Push} ((\varepsilon_2,
+                                               \lambda_2,
+                                               \sigma_2\!\cup\!
+                                               \lambda_1 \!\cup \sigma_1),
+                                              \id{S_2}))\)
+     \label{insert:li:expansion}
+\RComment Rightmost expansion.
+\end{codebox}
+\noindent There are three cases when defining \(\proc{Insert}
+(\varepsilon, \id{S})\): (\emph{i}) the stack \id{S} is empty because
+\(\varepsilon\) is the first element in the stream, at
+lines~\ref{insert:li:empty_stack}--\ref{insert:li:not_matches};
+(\emph{ii}) the top element of \id{S} contains \(\varepsilon\) (which
+implies the extension of the rightmost branch), at
+lines~\ref{insert:li:containment_in_top}--\ref{insert:li:extension};
+\begin{wrapfigure}[7]{r}{0pt}
+\centering
+\(
+\begin{array}{c>{\hspace*{5pt}}c>{\hspace*{5pt}}c}
+\toprule
+& \multicolumn{2}{c}{\text{Attributes}}\\
+\cmidrule(l){2-3}
+\text{Element} & \text{Local} & \text{Synthesised}\\
+\toprule
+\varepsilon & \varnothing & \varnothing\\
+\bottomrule
+\end{array}
+\)
+\caption{\(\varepsilon\) is the first element.}
+\label{first_elem}
+\end{wrapfigure}
+(\emph{iii}) \(\varepsilon\) and the top of \id{S} are disjoint (which
+implies a rightmost expansion), at
+lines~\ref{insert:li:second_pop}--\ref{insert:li:expansion}. If \id{S}
+is empty, the resulting stack only contains \(\varepsilon\) with
+\(\varepsilon\) as local attribute and no synthesised
+attributes. There cannot be any matches, even partial. See
+figure~\ref{first_elem}. Otherwise, we pop up element
+\(\varepsilon_1\) with its local and synthesised attributes,
+\(\lambda_1\) and \(\sigma_1\), and we get the remaining stack
+\id{S_1}, at line~\ref{insert:li:first_pop}. If the top of the stack,
+\(\varepsilon_1\), contains \(\varepsilon\)
+(line~\ref{insert:li:containment_in_top}), then it means that we have
+to extend the rightmost branch, which is achieved by pushing
+\(\varepsilon\) on \id{S} (line~\ref{insert:li:extension}). The local
+attributes \(\cal P\) of \(\varepsilon\) are computed by completing
+the partial matches in \id{S} and complete matches can also be found
+in the process, at line~\ref{insert:li:complete_stack}.
+\(\varepsilon\) has no synthesised attributes since \(\varepsilon\)
+has no contained elements yet. See the table in
+figure~\ref{rightmost_extension_table}. Otherwise, the top of the
+stack does not contain \(\varepsilon\), which means that we have to
+perform a rightmost expan-
+
+\begin{wrapfigure}[8]{R}{0pt}
+\(
+\begin{array}{ccc}
+\toprule
+& \multicolumn{2}{c}{\text{Attributes}}\\
+\cmidrule(l){2-3}
+\text{Element} & \text{Local} & \text{Synthesised}\\
+\toprule
+\multicolumn{3}{c}{\framebox[55mm][c]{\id{S}}}\\
+\varepsilon & \proc{Complete} (\varepsilon, \id{S}) & \varnothing\\
+\bottomrule
+\end{array}
+\)
+\caption{Rightmost extension.}
+\label{rightmost_extension_table}
+\end{wrapfigure}
+\noindent sion. This implies that the stack \id{S_1} must be
+non\hyp{}empty; in other words, \id{S} must contain at least two
+elements. Indeed, a rightmost expansion means that we grow another
+branch rooted on the rightmost bran\-ch, but not at its end (else it
+would be an extension), so the branch contains at least two nodes. Let
+us call \(\varepsilon_2\) the top element of \id{S_1}, and
+\(\lambda_2\) and \(\sigma_2\) its local and synthesised attributes;
+\id{S_2} is the remaining stack, at
+line~\ref{insert:li:second_pop}. Please consider the table at
+figure~\ref{rightmost_expansion_0}.
+
+\begin{wrapfigure}[9]{r}{0pt}
+\(
+\begin{array}{c>{\qquad}cc}
+\toprule
+& \multicolumn{2}{c}{\text{Attributes}}\\
+\cmidrule(l){2-3}
+\text{Element} & \text{Local} & \text{Synthesised}\\
+\toprule
+\multicolumn{3}{c}{\framebox[55mm][c]{\id{S_2}}}\\
+\varepsilon_2 & \lambda_2 & \sigma_2\\
+\varepsilon_1 & \lambda_1 & \sigma_1\\
+\bottomrule
+\end{array}
+\)
+\caption{Stack before expansion.\label{rightmost_expansion_0}}
+\end{wrapfigure}
+\noindent The rightmost expansion is realised by means of an extension
+at the node where the new rightmost branch is rooted, i.e., when the
+biggest element containing the new element \(\varepsilon\) is on the
+top of the stack. Then the first step of the rightmost expansion
+consists in inserting recursively \(\varepsilon\) in a stack equal to
+\id{S} \emph{without its top element} \(\varepsilon_1\), until the
+condition for an extension is satisfied. The attributes of
+\(\varepsilon_1\) are not lost: they are added (by a set union) to the
+synthesised attributes of the new top element \(\varepsilon_2\) (see
+line~\ref{insert:li:expansion}). In terms of the \XML
+
+\begin{wrapfigure}[8]{r}{0pt}
+\(
+\begin{array}{c>{\qquad}cc}
+\toprule
+& \multicolumn{2}{c}{\text{Attributes}}\\
+\cmidrule(l){2-3}
+\text{Element} & \text{Local} & \text{Synthesised}\\
+\toprule
+\multicolumn{3}{c}{\framebox[55mm][c]{\id{S_2}}}\\
+\varepsilon_2 & \lambda_2 & \sigma_2 \cup \lambda_1 \cup \sigma_1\\
+\bottomrule
+\end{array}
+\)
+\caption{Recursive expansion.\label{rightmost_expansion_1}}
+\end{wrapfigure}
+\noindent tree, this amounts to move up the attributes of the
+rightmost leaf and cut this leaf, and so on until an extension is
+possible. Check figure~\ref{rightmost_expansion_1}. As an example,
+consider the insertion of \(b_2\) (see last tree in
+figure~\ref{rightmost_branches}). The stack before the insertion is
+shown in figure~\ref{stack_before_b2}. Figure~\ref{stack_after_b2}
+shows the result of the rightmost expansion caused by the insertion of
+\(b_2\). Note that we assume in this figure that we search also for
+unordered matches of \(\query{a}{b,c}\) thus \([1 \mapsto a_1, 2
+  \mapsto b_2, 3 \mapsto c_1]\), i.e. \(\mathbf{a_1b_2c_1}\), is valid
+in spite of \(c_1 < b_2\).
+\begin{figure}[b]\centering
+\subfloat[Stack before adding \(b_2\).\label{stack_before_b2}]
+         {\(
+\begin{array}{ccc}
+\toprule
+& \multicolumn{2}{c}{\text{Attributes}}\\
+\cmidrule(l){2-3}
+\text{Element} & \text{Local} & \text{Synthesised}\\
+\toprule
+d_1 & \varnothing & \varnothing\\
+a_1 & \varnothing & a_1c_1,a_1b_1 \\
+c_2 & \mathbf{a_1b_1c_2},a_1c_2 & \varnothing\\
+a_2 & \varnothing & \varnothing\\
+\bottomrule
+\end{array}
+\)}
+\;
+\subfloat[Stack after adding \(b_2\).\label{stack_after_b2}]
+         {\(
+\begin{array}{ccc}
+\toprule
+& \multicolumn{2}{c}{\text{Attributes}}\\
+\cmidrule(l){2-3}
+\text{Element} & \text{Local} & \text{Synthesised}\\
+\toprule
+d_1 & \varnothing & \varnothing\\
+a_1 & \varnothing & a_1c_1,a_1b_1 \\
+c_2 & \mathbf{a_1b_1c_2},a_1c_2 & \varnothing\\
+b_2 & \mathbf{a_1b_2c_1},a_1b_2 & \varnothing\\
+\bottomrule
+\end{array}
+\)}
+\caption{The stack before and after inserting element \(b_2\).}
+\end{figure}
+
+
+\subsection{Completion}
+
+In order to understand how the local attributes are computed (in case
+of a rightmost extension), we must now define precisely function
+\proc{Complete}.
+\begin{codebox}
+\Procname{\(\proc{Complete} (\varepsilon, \id{S})\)}
+\li	\If \(\id{S} = \proc{Empty}\) \label{complete:li:empty_stack}
+\RComment If the stack is empty
+\li	\Then \Return \((\varnothing, \varnothing)\) 
+\label{complete:li:no_matches}
+\RComment then there is no completion.
+	\End
+\li	\(((\varepsilon_1, \lambda_1, \sigma_1), \id{S_1})
+          \gets \proc{Pop} (\id{S})\)
+    \label{complete:li:pop}
+\RComment Destructure one layer of the stack
+\zi
+\RComment and combine \(\varepsilon\) with the synthesised attributes
+of the top:
+\li \If \(T(\varepsilon_1) = \kappa_1\)
+\RComment if the top matches the query root,
+\label{complete:li:top_matches_root}
+\li \Then \(({\cal M}_1, {\cal P}_1) 
+             \gets \proc{Combine} (\varepsilon, \sigma_1 \cup \{[1
+             \mapsto \varepsilon_1]\})\)
+\RComment it may combine with \(\varepsilon\).
+\label{complete:li:add_combination}
+\li \Else \(({\cal M}_1, {\cal P}_1) 
+             \gets \proc{Combine} (\varepsilon, \sigma_1)\)
+    \label{complete:li:combine}
+    \End
+\li \(({\cal M}_2, {\cal P}_2) 
+       \gets \proc{Complete} (\varepsilon, \id{S_1})\)
+    \label{complete:li:recursion}
+\RComment Complete the remaining partial matches.
+\li \Return \(({\cal M}_1 \cup {\cal M}_2, {\cal P}_1 \cup {\cal P}_2)\)
+    \label{complete:li:union}
+\RComment New partial and complete matches.
+\end{codebox}
+\noindent If stack \id{S} is empty, then let us return no new matches
+(lines~\ref{complete:li:empty_stack}--\ref{complete:li:no_matches}). Otherwise,
+let us pop element \(\varepsilon_1\), whose synthesised attributes are
+\(\sigma_1\), and let \id{S_1} be the remaining stack, at
+line~\ref{complete:li:pop}. The next step is to try to combine
+\(\varepsilon\) with the partial matches in \(\sigma_1\) and get new
+matches \({\cal M}_1\) and new partial matches \({\cal P}_1\)
+(line~\ref{complete:li:combine}) but we must not forget a possible new
+partial match involving only \(\varepsilon\) and
+\(\varepsilon_1\). Thus we first check whether the top of the stack,
+\(\varepsilon\), matches the query root, at
+line~\ref{complete:li:top_matches_root}. If so, we also must try to
+combine \(\varepsilon_1\) and \(\varepsilon\), at
+line~\ref{complete:li:add_combination}. For example, consider the
+partial match \(a_1c_2\) in figure~\ref{stack_after_c2}. Next, we
+complete the remaining stack \id{S_1} with \(\varepsilon\) and get new
+matches \({\cal M}_2\) and new partial matches \({\cal P}_2\)
+(line~\ref{complete:li:recursion}). We merge these new matches and we
+merge separately the partial matches (line~\ref{complete:li:union}).
+
+
+\subsection{Combination}
+
+Let us define now \proc{Combine}, which is the function that tries to
+complete a set of partial matches with a given element. Since we deal
+here with partial matches, we must be more precise here. Let us note
+\(\cal D\) the function that returns the kind indexes of a given match
+(the \emph{domain} of the match). For example, if \(q =
+\query{a}{b,c}\) and \(\mu_q = [1 \mapsto a_1, 2 \mapsto b_1, 3
+  \mapsto c_2]\), then \({\cal D}(\mu_q) = \{1,2,3\}\). Let us note
+\(\overline{\cal D}(\mu_q)\) the complementary set \(\{1, \dots, {\cal
+  A}(q)\} \setminus {\cal D}(\mu_q)\). If \(\mu_q = [1 \mapsto a_1, 3
+  \mapsto c_2]\), then \({\cal D}(\mu_q) = \{1,3\}\) and
+\(\overline{\cal D}(\mu_q) = \{2\}\). Then the match \(\mu_q\) is
+complete if and only if \(\overline{\cal D}(\mu_q) =
+\varnothing\). Let us note \(\mu_q \oplus i \mapsto \varepsilon\) the
+extension of a match \(\mu_q\) with the binding \(i \mapsto
+\varepsilon\). The operator \(\oplus\) can be formally defined, for
+all \(j \in {\cal D}(\mu_q) \cup \{i\}\), as
+\[
+(\mu_q \oplus i \mapsto \varepsilon)(j) \triangleq
+\left\{
+\begin{aligned}
+\varepsilon && \text{if} \, i = j\\
+\mu_q(j)    && \text{otherwise}
+\end{aligned}
+\right.
+\]
+Moreover, let us assume we have a function \proc{Choose} that takes a
+set of matches and returns one of them paired with the complementary
+matches. (This is a way to defer to the implementation the actual
+iteration order.) The following definition of \proc{Combine} returns
+both ordered and unordered matches. For ordered matches only, see
+further.
+\begin{codebox}
+\Procname{\(\proc{Combine} (\varepsilon, \sigma)\)}
+\li	\If \(\sigma = \varnothing\)
+\label{combine:li:empty}
+\RComment If there are no partial matches
+\li	\Then \Return \((\varnothing, \varnothing)\)
+\label{combine:li:nothing}
+\RComment then return no new matches.
+	\End
+\li	\((\mu_q, \sigma') \gets \proc{Choose} (\sigma)\)
+\label{combine:li:arbitrary_selection}
+\RComment Pick a partial match \(\mu_q\); the remaining ones are \(\sigma'\).
+\li \(({\cal M}, {\cal P}) \gets 
+      \proc{Combine} (\varepsilon, \sigma')\)
+\label{combine:li:recursion}
+\RComment Combine \(\varepsilon\) with the remaining partial matches.
+\li	\If \(\exists i \in \overline{\cal D}(\mu_q).T(\varepsilon) = \kappa_i\)
+\label{combine:li:new_match}
+\RComment If \(\varepsilon\) completes \(\mu_q\) at index \(i\),
+i.e. \(\varepsilon\) matches \(\kappa_i\),
+\li	\Then \If \(|\overline{\cal D}(\mu_q)| = 1\)
+\label{combine:li:one_index_remaining}
+\RComment then if \(i\) was the sole unused index
+\li       \Then \Return \(({\cal M} \cup \{\mu_q \oplus i \mapsto
+                          \varepsilon\}, {\cal P})\)
+\label{combine:li:make_complete_match}
+\RComment we make a complete match,
+          \End
+\li       \Return \(({\cal M}, 
+                     {\cal P} \cup \{\mu_q \oplus i \mapsto
+                     \varepsilon\})\)
+\label{combine:li:make_partial_match}
+\RComment else it is a partial match.
+	\End
+\li	\Return \(({\cal M}, {\cal P})\)
+\label{combine:li:ignore}
+\RComment If \(\varepsilon\) does not extend \(\mu_q\), ignore the
+partial match \(\mu_q\).
+\end{codebox}
+If the set of partial matches \(\sigma\) is empty
+(line~\ref{combine:li:empty}), then let us return an empty set of new
+matches (line~\ref{combine:li:nothing}). Otherwise, let us arbitrarily
+choose any partial match \(\mu_q\) in \(\sigma\) and name the
+remaining partial matches \(\sigma'\)
+(line~\ref{combine:li:arbitrary_selection}). Next, let us recursively
+combine \(\varepsilon\) with the remaining partial matches
+(line~\ref{combine:li:recursion}). If \(\mu_q\) can be extended by
+\(\varepsilon\), that is to say, at least one of its index \(i\) is
+unused and \(\varepsilon\) matches \(\kappa_i\)
+(line~\ref{combine:li:new_match}), then a new partial or complete
+match can be made. If index \(i\) was the last unused in \(\mu_q\)
+(line~\ref{combine:li:one_index_remaining}), then \(\mu_q \oplus i
+\mapsto \varepsilon\) is a complete match
+(line~\ref{combine:li:make_complete_match}), otherwise it is partial
+(line~\ref{combine:li:make_partial_match}). If \(\varepsilon\) can not
+extend \(\mu_q\) (either because it matches no node of the query or
+because the sole matching nodes in the query are already matched by
+nodes of the \XML tree read so far), we just ignore it
+(line~\ref{combine:li:ignore}).
+
+%\subsection{Sharing roots}
+
+%\subsection{Ordered matches only} 

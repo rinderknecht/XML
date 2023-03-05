@@ -1,0 +1,48 @@
+%%-*-latex-*-
+
+\section{Naive approach}
+\label{naive}
+ 
+\noindent Given a query \(\query{\kappa_1}{\kappa_2, \dots,
+  \kappa_{{\cal A}(q)}}\), a naive approach to solve our problem
+consists in storing the elements read so far in lists according to
+their kind (as in the multiple streams framework) and, when a new
+element is read, we check for all the combinations of elements that
+make up a match. This procedure is inefficient because it reconsiders
+previous invalid combinations after an element is read. We can easily
+improve it by storing all the partial matches found so far and then
+trying to complete \emph{only them} with one more element each time,
+until a complete match is found. For example, let us consider the
+stream [\(d_1\), \(a_1\), \(c_1\), \(b_1\), \(c_2\), \(a_2\), \(b_2\)]
+and let us seek both ordered and unordered matches. In
+figure~\ref{input_lists}, the first line corresponds to the
+\begin{wrapfigure}[8]{r}{0pt}
+\centering
+\fbox{\(
+\begin{array}{c|c|c|c|c|c|c}
+\varnothing & a_1 & a_1 & a_1 & a_1 & a_1,a_2 & a_1, a_2\\
+\varnothing & \varnothing & \varnothing & b_1 & b_1 & b_1 & b_1,b_2\\
+\varnothing & \varnothing & c_1 & c_1 & c_1,c_2 & c_1,c_2 & c_1,c_2\\
+d_1 & d_1 & d_1 & d_1 & d_1 & d_1 & d_1
+\end{array}
+\)
+}
+\caption{Input lists.\label{input_lists}}
+\end{wrapfigure}
+sorted list of \(a\)-elements read so far, the second to the
+\(b\)-elements etc. Each column shows the state of the lists after
+each element is read from the input stream.  At each step, i.e., for
+each column, the new valid combinations are respectively
+\(\varnothing\), \{\(a_1\)\}, \{\(a_1\), \(a_1c_1\)\}, \{\(a_1\),
+\(a_1c_1\), \(a_1b_1\)\}, \{\(a_1\), \(a_1c_1\), \(a_1b_1\),
+\(\mathbf{a_1b_1c_2}\), \(a_1c_2\)\}, \{\(a_1\), \(a_1c_1\),
+\(a_1b_1\), \(\mathbf{a_1b_1c_2}\), \(a_1c_2\), \(a_2\)\}, \{\(a_1\),
+\(a_1c_1\), \(a_1b_1\), \(\mathbf{a_1b_1c_2}\), \(a_2\), \(a_1c_2\),
+\(\mathbf{a_1b_2c_1}\), \(a_1b_2\)\} ---~solutions in bold. Note that,
+since the kinds in this query are pairwise distinct, we can simplify
+the notation for complete and partial matches by just enumerating
+elements, like \(a_1c_1\) and \(a_1b_2\) etc. The drawbacks of this
+procedure are that it uses too much memory and it is too slow. Indeed,
+it needs to keep in memory the complete lists of elements and it tries
+to form new combinations with elements which are not disjoint, like
+\(a_1b_1c_1\) in our example (\(b_1 \sqsubset c_1\)).

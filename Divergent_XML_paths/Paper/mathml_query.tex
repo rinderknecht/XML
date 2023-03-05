@@ -1,0 +1,27 @@
+%%-*-latex-*-
+
+\documentclass[11pt]{article}
+
+%\usepackage{txfonts}
+\usepackage{pstricks,pst-tree,pst-eps}
+
+\newcommand{\mknode}[1]{\TR{\textsf{#1}}}
+
+\begin{document}
+
+\TeXtoEPS
+\pstree[nodesep=2pt,levelsep=20pt,treesep=10pt]{\mknode{apply}}{
+  \mknode{minus}
+  \psset{doubleline=true}
+  \pstree[doubleline=false]{\mknode{apply}}{
+    \mknode{sin}
+    \TR{\(a\)}
+  }
+  \pstree[doubleline=false]{\mknode{apply}}{
+    \mknode{cos}
+    \TR{\(b\)}
+  }
+}
+\endTeXtoEPS
+
+\end{document}
